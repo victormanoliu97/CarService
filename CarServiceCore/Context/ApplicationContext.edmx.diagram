@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f4130b75bb4b4601be2dcbb0ca620c2a" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Automobil" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Client" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Comanda" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DetaliiComanda" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Imagine" Width="1.5" PointX="9.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Material" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Mecanic" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Operatie" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Sasiu" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK__Automobil__Clien__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Automobil__Sasiu__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Comanda__AutoId__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__DetaliiCo__AutoI__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Comanda__ClientI__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Comanda__Detalii__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__DetaliiCo__Coman__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__DetaliiCo__Imagi__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__DetaliiCo__Mecan__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__DetaliiCo__Opera__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Imagine__Detalii__75A278F5" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

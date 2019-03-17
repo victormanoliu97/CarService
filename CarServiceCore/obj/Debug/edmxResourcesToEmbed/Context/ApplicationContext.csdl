@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Automobil">
+    <Key>
+      <PropertyRef Name="AutoId" />
+    </Key>
+    <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="NumarAuto" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SasiuId" Type="Int32" Nullable="false" />
+    <Property Name="SerieSasiu" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Client" Relationship="Self.FK__Automobil__Clien__72C60C4A" FromRole="Automobil" ToRole="Client" />
+    <NavigationProperty Name="Sasiu" Relationship="Self.FK__Automobil__Sasiu__71D1E811" FromRole="Automobil" ToRole="Sasiu" />
+    <NavigationProperty Name="Comandas" Relationship="Self.FK__Comanda__AutoId__70DDC3D8" FromRole="Automobil" ToRole="Comanda" />
+    <NavigationProperty Name="DetaliiComandas" Relationship="Self.FK__DetaliiCo__AutoI__6FE99F9F" FromRole="Automobil" ToRole="DetaliiComanda" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ClientId" />
+    </Key>
+    <Property Name="ClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nume" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Prenume" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Adresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Localitate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Judet" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefon" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Automobils" Relationship="Self.FK__Automobil__Clien__72C60C4A" FromRole="Client" ToRole="Automobil" />
+    <NavigationProperty Name="Comandas" Relationship="Self.FK__Comanda__ClientI__5CD6CB2B" FromRole="Client" ToRole="Comanda" />
+  </EntityType>
+  <EntityType Name="Comanda">
+    <Key>
+      <PropertyRef Name="ComandaId" />
+    </Key>
+    <Property Name="ComandaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AutoId" Type="Int32" Nullable="false" />
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="DetaliiComandaId" Type="Int32" Nullable="false" />
+    <Property Name="StareComanda" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DataSystem" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataProgramare" Type="DateTime" Precision="3" />
+    <Property Name="DataFinalizare" Type="DateTime" Precision="3" />
+    <Property Name="KmBord" Type="Int32" Nullable="false" />
+    <Property Name="Descriere" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ValoarePiese" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Automobil" Relationship="Self.FK__Comanda__AutoId__70DDC3D8" FromRole="Comanda" ToRole="Automobil" />
+    <NavigationProperty Name="Client" Relationship="Self.FK__Comanda__ClientI__5CD6CB2B" FromRole="Comanda" ToRole="Client" />
+    <NavigationProperty Name="DetaliiComanda" Relationship="Self.FK__Comanda__Detalii__4E88ABD4" FromRole="Comanda" ToRole="DetaliiComanda" />
+    <NavigationProperty Name="DetaliiComandas" Relationship="Self.FK__DetaliiCo__Coman__4D94879B" FromRole="Comanda" ToRole="DetaliiComanda" />
+  </EntityType>
+  <EntityType Name="DetaliiComanda">
+    <Key>
+      <PropertyRef Name="DetaliiComandaId" />
+    </Key>
+    <Property Name="DetaliiComandaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ComandaId" Type="Int32" Nullable="false" />
+    <Property Name="AutoId" Type="Int32" Nullable="false" />
+    <Property Name="MecanicId" Type="Int32" Nullable="false" />
+    <Property Name="OperatieId" Type="Int32" Nullable="false" />
+    <Property Name="ImagineId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Automobil" Relationship="Self.FK__DetaliiCo__AutoI__6FE99F9F" FromRole="DetaliiComanda" ToRole="Automobil" />
+    <NavigationProperty Name="Comandas" Relationship="Self.FK__Comanda__Detalii__4E88ABD4" FromRole="DetaliiComanda" ToRole="Comanda" />
+    <NavigationProperty Name="Comanda" Relationship="Self.FK__DetaliiCo__Coman__4D94879B" FromRole="DetaliiComanda" ToRole="Comanda" />
+    <NavigationProperty Name="Imagine" Relationship="Self.FK__DetaliiCo__Imagi__76969D2E" FromRole="DetaliiComanda" ToRole="Imagine" />
+    <NavigationProperty Name="Mecanic" Relationship="Self.FK__DetaliiCo__Mecan__44FF419A" FromRole="DetaliiComanda" ToRole="Mecanic" />
+    <NavigationProperty Name="Operatie" Relationship="Self.FK__DetaliiCo__Opera__45F365D3" FromRole="DetaliiComanda" ToRole="Operatie" />
+    <NavigationProperty Name="Imagines" Relationship="Self.FK__Imagine__Detalii__75A278F5" FromRole="DetaliiComanda" ToRole="Imagine" />
+  </EntityType>
+  <EntityType Name="Imagine">
+    <Key>
+      <PropertyRef Name="ImagineId" />
+    </Key>
+    <Property Name="ImagineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DetaliiComandaId" Type="Int32" />
+    <Property Name="Titlu" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descriere" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="DataImagine" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <NavigationProperty Name="DetaliiComandas" Relationship="Self.FK__DetaliiCo__Imagi__76969D2E" FromRole="Imagine" ToRole="DetaliiComanda" />
+    <NavigationProperty Name="DetaliiComanda" Relationship="Self.FK__Imagine__Detalii__75A278F5" FromRole="Imagine" ToRole="DetaliiComanda" />
+  </EntityType>
+  <EntityType Name="Material">
+    <Key>
+      <PropertyRef Name="MaterialId" />
+    </Key>
+    <Property Name="MaterialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Denumire" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cantitate" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Pret" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="DataAprovizionare" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Mecanic">
+    <Key>
+      <PropertyRef Name="MecanicId" />
+    </Key>
+    <Property Name="MecanicId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nume" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Prenume" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DetaliiComandas" Relationship="Self.FK__DetaliiCo__Mecan__44FF419A" FromRole="Mecanic" ToRole="DetaliiComanda" />
+  </EntityType>
+  <EntityType Name="Operatie">
+    <Key>
+      <PropertyRef Name="OperatieId" />
+    </Key>
+    <Property Name="OperatieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Denumire" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TimpExecutie" Type="Decimal" Precision="6" Scale="2" />
+    <NavigationProperty Name="DetaliiComandas" Relationship="Self.FK__DetaliiCo__Opera__45F365D3" FromRole="Operatie" ToRole="DetaliiComanda" />
+  </EntityType>
+  <EntityType Name="Sasiu">
+    <Key>
+      <PropertyRef Name="SasiuId" />
+    </Key>
+    <Property Name="SasiuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodSasiu" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Denumire" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Automobils" Relationship="Self.FK__Automobil__Sasiu__71D1E811" FromRole="Sasiu" ToRole="Automobil" />
+  </EntityType>
+  <Association Name="FK__Automobil__Clien__72C60C4A">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Automobil" Type="Self.Automobil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="Automobil">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Automobil__Sasiu__71D1E811">
+    <End Role="Sasiu" Type="Self.Sasiu" Multiplicity="1" />
+    <End Role="Automobil" Type="Self.Automobil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sasiu">
+        <PropertyRef Name="SasiuId" />
+      </Principal>
+      <Dependent Role="Automobil">
+        <PropertyRef Name="SasiuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comanda__AutoId__70DDC3D8">
+    <End Role="Automobil" Type="Self.Automobil" Multiplicity="1" />
+    <End Role="Comanda" Type="Self.Comanda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Automobil">
+        <PropertyRef Name="AutoId" />
+      </Principal>
+      <Dependent Role="Comanda">
+        <PropertyRef Name="AutoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetaliiCo__AutoI__6FE99F9F">
+    <End Role="Automobil" Type="Self.Automobil" Multiplicity="1" />
+    <End Role="DetaliiComanda" Type="Self.DetaliiComanda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Automobil">
+        <PropertyRef Name="AutoId" />
+      </Principal>
+      <Dependent Role="DetaliiComanda">
+        <PropertyRef Name="AutoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comanda__ClientI__5CD6CB2B">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Comanda" Type="Self.Comanda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="Comanda">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comanda__Detalii__4E88ABD4">
+    <End Role="DetaliiComanda" Type="Self.DetaliiComanda" Multiplicity="1" />
+    <End Role="Comanda" Type="Self.Comanda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DetaliiComanda">
+        <PropertyRef Name="DetaliiComandaId" />
+      </Principal>
+      <Dependent Role="Comanda">
+        <PropertyRef Name="DetaliiComandaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetaliiCo__Coman__4D94879B">
+    <End Role="Comanda" Type="Self.Comanda" Multiplicity="1" />
+    <End Role="DetaliiComanda" Type="Self.DetaliiComanda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comanda">
+        <PropertyRef Name="ComandaId" />
+      </Principal>
+      <Dependent Role="DetaliiComanda">
+        <PropertyRef Name="ComandaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetaliiCo__Imagi__76969D2E">
+    <End Role="Imagine" Type="Self.Imagine" Multiplicity="1" />
+    <End Role="DetaliiComanda" Type="Self.DetaliiComanda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Imagine">
+        <PropertyRef Name="ImagineId" />
+      </Principal>
+      <Dependent Role="DetaliiComanda">
+        <PropertyRef Name="ImagineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetaliiCo__Mecan__44FF419A">
+    <End Role="Mecanic" Type="Self.Mecanic" Multiplicity="1" />
+    <End Role="DetaliiComanda" Type="Self.DetaliiComanda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mecanic">
+        <PropertyRef Name="MecanicId" />
+      </Principal>
+      <Dependent Role="DetaliiComanda">
+        <PropertyRef Name="MecanicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetaliiCo__Opera__45F365D3">
+    <End Role="Operatie" Type="Self.Operatie" Multiplicity="1" />
+    <End Role="DetaliiComanda" Type="Self.DetaliiComanda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operatie">
+        <PropertyRef Name="OperatieId" />
+      </Principal>
+      <Dependent Role="DetaliiComanda">
+        <PropertyRef Name="OperatieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Imagine__Detalii__75A278F5">
+    <End Role="DetaliiComanda" Type="Self.DetaliiComanda" Multiplicity="0..1" />
+    <End Role="Imagine" Type="Self.Imagine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DetaliiComanda">
+        <PropertyRef Name="DetaliiComandaId" />
+      </Principal>
+      <Dependent Role="Imagine">
+        <PropertyRef Name="DetaliiComandaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Automobils" EntityType="Self.Automobil" />
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="Comandas" EntityType="Self.Comanda" />
+    <EntitySet Name="DetaliiComandas" EntityType="Self.DetaliiComanda" />
+    <EntitySet Name="Imagines" EntityType="Self.Imagine" />
+    <EntitySet Name="Materials" EntityType="Self.Material" />
+    <EntitySet Name="Mecanics" EntityType="Self.Mecanic" />
+    <EntitySet Name="Operaties" EntityType="Self.Operatie" />
+    <EntitySet Name="Sasius" EntityType="Self.Sasiu" />
+    <AssociationSet Name="FK__Automobil__Clien__72C60C4A" Association="Self.FK__Automobil__Clien__72C60C4A">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Automobil" EntitySet="Automobils" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Automobil__Sasiu__71D1E811" Association="Self.FK__Automobil__Sasiu__71D1E811">
+      <End Role="Sasiu" EntitySet="Sasius" />
+      <End Role="Automobil" EntitySet="Automobils" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comanda__AutoId__70DDC3D8" Association="Self.FK__Comanda__AutoId__70DDC3D8">
+      <End Role="Automobil" EntitySet="Automobils" />
+      <End Role="Comanda" EntitySet="Comandas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetaliiCo__AutoI__6FE99F9F" Association="Self.FK__DetaliiCo__AutoI__6FE99F9F">
+      <End Role="Automobil" EntitySet="Automobils" />
+      <End Role="DetaliiComanda" EntitySet="DetaliiComandas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comanda__ClientI__5CD6CB2B" Association="Self.FK__Comanda__ClientI__5CD6CB2B">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Comanda" EntitySet="Comandas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comanda__Detalii__4E88ABD4" Association="Self.FK__Comanda__Detalii__4E88ABD4">
+      <End Role="DetaliiComanda" EntitySet="DetaliiComandas" />
+      <End Role="Comanda" EntitySet="Comandas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetaliiCo__Coman__4D94879B" Association="Self.FK__DetaliiCo__Coman__4D94879B">
+      <End Role="Comanda" EntitySet="Comandas" />
+      <End Role="DetaliiComanda" EntitySet="DetaliiComandas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetaliiCo__Imagi__76969D2E" Association="Self.FK__DetaliiCo__Imagi__76969D2E">
+      <End Role="Imagine" EntitySet="Imagines" />
+      <End Role="DetaliiComanda" EntitySet="DetaliiComandas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetaliiCo__Mecan__44FF419A" Association="Self.FK__DetaliiCo__Mecan__44FF419A">
+      <End Role="Mecanic" EntitySet="Mecanics" />
+      <End Role="DetaliiComanda" EntitySet="DetaliiComandas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetaliiCo__Opera__45F365D3" Association="Self.FK__DetaliiCo__Opera__45F365D3">
+      <End Role="Operatie" EntitySet="Operaties" />
+      <End Role="DetaliiComanda" EntitySet="DetaliiComandas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Imagine__Detalii__75A278F5" Association="Self.FK__Imagine__Detalii__75A278F5">
+      <End Role="DetaliiComanda" EntitySet="DetaliiComandas" />
+      <End Role="Imagine" EntitySet="Imagines" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
