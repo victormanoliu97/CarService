@@ -8,6 +8,8 @@ namespace CarServiceCore.Repository.AutoRepository
     {
         List<Automobil> GetAutosOfClient(Client client);
 
+        bool AutoExists(Automobil auto);
+
         void AddAuto(Automobil auto);
 
         void UpdateAuto(Automobil auto);

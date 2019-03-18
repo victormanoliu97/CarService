@@ -21,6 +21,7 @@ namespace CarServiceCore.Repository.ClientRepository
 
         public void AddClient(Client client)
         {
+            if (ClientExists(client)) return;
             _applicationContext.Clients.Add(client);
             _applicationContext.SaveChanges();
         }
@@ -59,6 +60,21 @@ namespace CarServiceCore.Repository.ClientRepository
             if (client == null) return null;
             var foundClient = _applicationContext.Clients.FirstOrDefault(client1 => client1.ClientId == client.ClientId);
             return foundClient;
+        }
+
+        public List<Client> PartialSearchClients(Client client)
+        {
+            if (client == null) return null;
+            
+            var queryByFirstName = _applicationContext.Clients.Where(c => c.Nume.Contains(client.Nume));
+            var queryByLastName = _applicationContext.Clients.Where(c => c.Nume.Contains(client.Prenume));
+
+            if (queryByFirstName.Any())
+            {
+                return queryByFirstName.ToList();
+            }
+            
+            return queryByLastName.Any() ? queryByLastName.ToList() : null;
         }
     }
 }

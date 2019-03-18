@@ -25,9 +25,17 @@ namespace CarServiceCore.Repository.AutoRepository
             return query.ToList();
         }
 
+        public bool AutoExists(Automobil auto)
+        {
+            if (auto == null) return false;
+            var foundAuto = _applicationContext.Automobils.FirstOrDefault(a => a.AutoId == auto.AutoId);
+            return foundAuto != null;
+        }
+
         public void AddAuto(Automobil auto)
         {
             if (auto == null) return;
+            if (AutoExists(auto)) return;
             _applicationContext.Automobils.Add(auto);
             _applicationContext.SaveChanges();
         }

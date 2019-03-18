@@ -121,11 +121,23 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AutoRepository\AutoRepository.cs" />
     <Compile Include="Repository\AutoRepository\IAutoRepository.cs" />
+    <Compile Include="Repository\ChassisRepository\ChassisRepository.cs" />
+    <Compile Include="Repository\ChassisRepository\IChassisRepository.cs" />
     <Compile Include="Repository\ClientRepository\ClientRepository.cs" />
     <Compile Include="Repository\ClientRepository\IClientRepository.cs" />
+    <Compile Include="Repository\ImageRepository\ImageRepository.cs" />
+    <Compile Include="Repository\MaterialRepository\IMaterialRepository.cs" />
+    <Compile Include="Repository\MaterialRepository\MaterialRepository.cs" />
+    <Compile Include="Repository\MechanicRepository\IMechanicRepository.cs" />
+    <Compile Include="Repository\MechanicRepository\MechanicRepository.cs" />
     <Compile Include="Repository\OrderRepository\IOrderRepository.cs" />
+    <Compile Include="Repository\OrderRepository\OrderRepository.cs" />
     <Compile Include="Utils\Transformer\AutoTransformer.cs" />
+    <Compile Include="Utils\Transformer\ChassisTransformer.cs" />
     <Compile Include="Utils\Transformer\ClientTransformer.cs" />
+    <Compile Include="Utils\Transformer\MaterialTransformer.cs" />
+    <Compile Include="Utils\Transformer\MechanicTransformer.cs" />
+    <Compile Include="Utils\Transformer\OrderTransformer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

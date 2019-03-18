@@ -64,7 +64,9 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pls\PlsWork.cs" />
+    <Compile Include="RepositoryTests\AutoRepositoryTests.cs" />
+    <Compile Include="RepositoryTests\ClientRepositoryTests.cs" />
+    <Compile Include="RepositoryTests\OrderRepositoryTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
