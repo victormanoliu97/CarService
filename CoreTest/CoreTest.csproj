@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="RepositoryTests\AutoRepositoryTests.cs" />
     <Compile Include="RepositoryTests\ClientRepositoryTests.cs" />
+    <Compile Include="RepositoryTests\MechanicRepositoryTests.cs" />
     <Compile Include="RepositoryTests\OrderRepositoryTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

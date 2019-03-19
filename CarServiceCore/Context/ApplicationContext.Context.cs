@@ -16,7 +16,7 @@ namespace CarServiceCore.Context
     public partial class Entities : DbContext
     {
         public Entities()
-            : base("Entities")
+            : base("name=Entities")
         {
         }
     

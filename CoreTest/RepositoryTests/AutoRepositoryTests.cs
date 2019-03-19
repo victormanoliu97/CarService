@@ -25,8 +25,8 @@ namespace CoreTest.RepositoryTests
         {
             return new Automobil
             {
-                AutoId = 2,
-                ClientId = 4,
+                AutoId = 1,
+                ClientId = 1,
                 NumarAuto = "B666BAD",
                 SasiuId = 1,
                 SerieSasiu = "XCXZZX"

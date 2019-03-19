@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Common.CommandTrees;
+using System.Data.Odbc;
 using System.Linq;
 using System.Net.Sockets;
 using CarServiceCore.Context;
@@ -25,54 +26,43 @@ namespace CarServiceCore.Repository.OrderRepository
                 where order.ClientId == client.ClientId
                 select order;
 
-            return query.ToList();
+            return query.Any() ? query.ToList() : null;
         }
 
-        public void AddOrder(Comanda order, DetaliiComanda orderDetails)
+        public void AddOrder(Comanda order)
         {
-            if (order != null)
+            if (order == null) return;
+            if (OrderExists(order)) return;
+            var orderToAdd = new Comanda
             {
-                var orderToAdd = new Comanda
-                {
-                    Client = order.Client,
-                    ClientId = order.Client.ClientId,
-                    Automobil = order.Automobil,
-                    AutoId = order.Automobil.AutoId,
-                    StareComanda = order.StareComanda == null ? OrderStatusEnum.WaitingOrder.ElementAt(0).Value : order.StareComanda,
-                    DataSystem = DateTime.Now,
-                    DataProgramare = order.DataProgramare,
-                    Descriere = order.Descriere,
-                    ValoarePiese = order.ValoarePiese == null ? 0 : order.ValoarePiese
-                };
-                var orderDetailsToAdd = new DetaliiComanda
-                {
-                    ComandaId = orderToAdd.DetaliiComandaId,
-                    AutoId = orderToAdd.AutoId,
-                    MecanicId = orderDetails.Mecanic?.MecanicId ?? 0,
-                    OperatieId = orderDetails.Operatie?.OperatieId ?? 0,
-                    ImagineId = orderDetails.Imagine?.ImagineId ?? 0
-                };
-                _applicationContext.Comandas.Add(orderToAdd);
-                _applicationContext.DetaliiComandas.Add(orderDetailsToAdd);
-                _applicationContext.SaveChanges();
-            }
+                ClientId = order.ClientId,
+                AutoId = order.AutoId,
+                StareComanda = order.StareComanda == null ? OrderStatusEnum.WaitingOrder.ElementAt(0).Value : order.StareComanda,
+                DataSystem = DateTime.Now,
+                DataProgramare = order.DataProgramare,
+                Descriere = order.Descriere,
+                KmBord = order.KmBord == null ? 0 : order.KmBord,
+                ValoarePiese = order.ValoarePiese == null ? 0 : order.ValoarePiese
+            };
+            _applicationContext.Comandas.Add(orderToAdd);
+            _applicationContext.SaveChanges();
         }
 
         public void DeleteOrder(Comanda order)
         {
             if (order == null) return;
-            _applicationContext.Comandas.Remove(order);
-
-            var query = from o in _applicationContext.DetaliiComandas
-                where o.DetaliiComandaId == order.DetaliiComandaId
+            if (!OrderExists(order)) return;
+            
+            var queryGetOrderDetailsForOrder = from o in _applicationContext.DetaliiComandas
+                where o.ComandaId == order.ComandaId
                 select o;
-
-            List<DetaliiComanda> detailsOfOrder = query.ToList();
-            foreach (var detailOrder in detailsOfOrder)
+            if (!queryGetOrderDetailsForOrder.Any()) return;
+            
+            _applicationContext.Comandas.Remove(order);
+            foreach (var orderDetail in queryGetOrderDetailsForOrder)
             {
-                _applicationContext.DetaliiComandas.Remove(detailOrder);
+                _applicationContext.DetaliiComandas.Remove(orderDetail);
             }
-
             _applicationContext.SaveChanges();
         }
 
@@ -80,7 +70,128 @@ namespace CarServiceCore.Repository.OrderRepository
         {
             if (order == null) return;
             var foundOrder = _applicationContext.Comandas.FirstOrDefault(o => o.ComandaId == order.ComandaId);
+            if (foundOrder == null) return;
             OrderTransformer.MergeOrderEntities(foundOrder, order);
+            _applicationContext.SaveChanges();
+        }
+
+        public bool OrderExists(Comanda order)
+        {
+            if (order == null) return false;
+            var foundOrder = _applicationContext.Comandas.FirstOrDefault(o => o.ComandaId == order.ComandaId);
+            return foundOrder != null;
+        }
+
+        public void SetStatusToOrder(Comanda order, string status)
+        {
+            if (order == null && status == null) return;
+            var foundOrder = _applicationContext.Comandas.FirstOrDefault(o => o.ComandaId == order.ComandaId);
+            if (foundOrder != null) foundOrder.StareComanda = status;
+        }
+
+        public List<Comanda> GetOrderWithStatus(Comanda order, string status)
+        {
+            if (order == null && status == null) return null;
+            var query = from o in _applicationContext.Comandas
+                where o.ComandaId == order.ComandaId
+                select o;
+
+            return query.Any() ? query.ToList() : null;
+        }
+
+        public List<Operatie> GetOperationsForOrder(Comanda order)
+        {
+            if (order == null) return null;
+            if (!OrderExists(order)) return null;
+            var queryGetOrderDetailsForOrder = from o in _applicationContext.DetaliiComandas
+                where o.ComandaId == order.ComandaId
+                select o;
+            if (!queryGetOrderDetailsForOrder.Any()) return null;
+
+            List<Operatie> operationsListForOrder = new List<Operatie>();
+            foreach (var i in queryGetOrderDetailsForOrder.ToList())
+            {
+                operationsListForOrder.Add(i.Operatie);
+            }
+
+            return operationsListForOrder;
+        }
+
+        public List<Imagine> GetImagesForOrder(Comanda order)
+        {
+            if (order == null) return null;
+            if (!OrderExists(order)) return null;
+            var queryGetOrderDetailsForOrder = from o in _applicationContext.DetaliiComandas
+                where o.ComandaId == order.ComandaId
+                select o;
+            if (!queryGetOrderDetailsForOrder.Any()) return null;
+            
+            var imageListForOrder = new List<Imagine>();
+            foreach (var i in queryGetOrderDetailsForOrder.ToList())
+            {
+                imageListForOrder.Add(i.Imagine);
+            }
+
+            return imageListForOrder;
+        }
+
+        public List<Mecanic> GetMechanicsForOrder(Comanda order)
+        {
+            if (order == null) return null;
+            if (!OrderExists(order)) return null;
+            var queryGetOrderDetailsForOrder = from o in _applicationContext.DetaliiComandas
+                where o.ComandaId == order.ComandaId
+                select o;
+            if (!queryGetOrderDetailsForOrder.Any()) return null;
+
+            var orderMechanicsList = new List<Mecanic>();
+            foreach (var i in queryGetOrderDetailsForOrder.ToList())
+            {
+                orderMechanicsList.Add(i.Mecanic);
+            }
+
+            return orderMechanicsList;
+        }
+
+        public List<Comanda> GetOrdersBetweenDates(DateTime fromDate, DateTime toDate)
+        {
+            var getOrderBetweenDatesQuery = from o in _applicationContext.Comandas
+                where o.DataProgramare >= fromDate && o.DataFinalizare <= toDate
+                select o;
+
+            return getOrderBetweenDatesQuery.Any() ? getOrderBetweenDatesQuery.ToList() : null;
+        }
+
+        public List<Mecanic> GetAvailableMechanicsToExecuteOperation(Comanda order)
+        {
+            var getAllMechanicsAssigned = from o in _applicationContext.DetaliiComandas
+                select o.MecanicId;
+
+            var getAllMechanics = from o in _applicationContext.Mecanics
+                select o.MecanicId;
+
+            var availableIdList = getAllMechanics.ToList().Except(getAllMechanicsAssigned);
+
+            var availableMechanics = new List<Mecanic>();
+            foreach (var id in availableIdList)
+            {
+                availableMechanics.Add(_applicationContext.Mecanics.First(i => i.MecanicId == id));
+            }
+
+            return availableMechanics;
+        }
+
+        public void AddOrderDetailsForOrder(DetaliiComanda orderDetails)
+        {
+            var orderDetailsToAdd = new DetaliiComanda
+            {
+                ComandaId = orderDetails.ComandaId,
+                AutoId = orderDetails.AutoId,
+                MecanicId = orderDetails.MecanicId,
+                OperatieId = orderDetails.OperatieId,
+                ImagineId = orderDetails.ImagineId
+            };
+            _applicationContext.DetaliiComandas.Add(orderDetailsToAdd);
             _applicationContext.SaveChanges();
         }
     }

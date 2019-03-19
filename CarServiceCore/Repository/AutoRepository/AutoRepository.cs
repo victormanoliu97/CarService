@@ -56,5 +56,11 @@ namespace CarServiceCore.Repository.AutoRepository
             _applicationContext.Automobils.Remove(auto);
             _applicationContext.SaveChanges();
         }
+
+        public List<Comanda> GetOrdersForCar(Automobil auto)
+        {
+            if (auto == null) return null;
+            return _applicationContext.Automobils.FirstOrDefault(a => a.AutoId == auto.AutoId) == null ? null : auto.Comandas.ToList();
+        }
     }
 }

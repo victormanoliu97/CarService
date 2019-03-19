@@ -30,7 +30,6 @@
     <Property Name="ComandaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="AutoId" Type="int" Nullable="false" />
     <Property Name="ClientId" Type="int" Nullable="false" />
-    <Property Name="DetaliiComandaId" Type="int" Nullable="false" />
     <Property Name="StareComanda" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="DataSystem" Type="datetime" Nullable="false" />
     <Property Name="DataProgramare" Type="datetime" />
@@ -55,7 +54,6 @@
       <PropertyRef Name="ImagineId" />
     </Key>
     <Property Name="ImagineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DetaliiComandaId" Type="int" />
     <Property Name="Titlu" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="Descriere" Type="varchar" MaxLength="256" />
     <Property Name="DataImagine" Type="datetime" Nullable="false" />
@@ -143,18 +141,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Comanda__Detalii__4E88ABD4">
-    <End Role="DetaliiComanda" Type="Self.DetaliiComanda" Multiplicity="1" />
-    <End Role="Comanda" Type="Self.Comanda" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DetaliiComanda">
-        <PropertyRef Name="DetaliiComandaId" />
-      </Principal>
-      <Dependent Role="Comanda">
-        <PropertyRef Name="DetaliiComandaId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__DetaliiCo__AutoI__6FE99F9F">
     <End Role="Automobil" Type="Self.Automobil" Multiplicity="1" />
     <End Role="DetaliiComanda" Type="Self.DetaliiComanda" Multiplicity="*" />
@@ -215,18 +201,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Imagine__Detalii__75A278F5">
-    <End Role="DetaliiComanda" Type="Self.DetaliiComanda" Multiplicity="0..1" />
-    <End Role="Imagine" Type="Self.Imagine" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DetaliiComanda">
-        <PropertyRef Name="DetaliiComandaId" />
-      </Principal>
-      <Dependent Role="Imagine">
-        <PropertyRef Name="DetaliiComandaId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="Automobil" EntityType="Self.Automobil" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
@@ -253,10 +227,6 @@
       <End Role="Client" EntitySet="Client" />
       <End Role="Comanda" EntitySet="Comanda" />
     </AssociationSet>
-    <AssociationSet Name="FK__Comanda__Detalii__4E88ABD4" Association="Self.FK__Comanda__Detalii__4E88ABD4">
-      <End Role="DetaliiComanda" EntitySet="DetaliiComanda" />
-      <End Role="Comanda" EntitySet="Comanda" />
-    </AssociationSet>
     <AssociationSet Name="FK__DetaliiCo__AutoI__6FE99F9F" Association="Self.FK__DetaliiCo__AutoI__6FE99F9F">
       <End Role="Automobil" EntitySet="Automobil" />
       <End Role="DetaliiComanda" EntitySet="DetaliiComanda" />
@@ -276,10 +246,6 @@
     <AssociationSet Name="FK__DetaliiCo__Opera__45F365D3" Association="Self.FK__DetaliiCo__Opera__45F365D3">
       <End Role="Operatie" EntitySet="Operatie" />
       <End Role="DetaliiComanda" EntitySet="DetaliiComanda" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Imagine__Detalii__75A278F5" Association="Self.FK__Imagine__Detalii__75A278F5">
-      <End Role="DetaliiComanda" EntitySet="DetaliiComanda" />
-      <End Role="Imagine" EntitySet="Imagine" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

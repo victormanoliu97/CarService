@@ -76,5 +76,10 @@ namespace CarServiceCore.Repository.ClientRepository
             
             return queryByLastName.Any() ? queryByLastName.ToList() : null;
         }
+
+        public List<Automobil> GetAutosOfClient(Client client)
+        {
+            return client?.Automobils.ToList();
+        }
     }
 }

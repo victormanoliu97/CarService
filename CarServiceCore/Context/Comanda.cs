@@ -14,16 +14,9 @@ namespace CarServiceCore.Context
     
     public partial class Comanda
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Comanda()
-        {
-            this.DetaliiComandas = new HashSet<DetaliiComanda>();
-        }
-    
         public int ComandaId { get; set; }
         public int AutoId { get; set; }
         public int ClientId { get; set; }
-        public int DetaliiComandaId { get; set; }
         public string StareComanda { get; set; }
         public System.DateTime DataSystem { get; set; }
         public Nullable<System.DateTime> DataProgramare { get; set; }
@@ -34,8 +27,5 @@ namespace CarServiceCore.Context
     
         public virtual Automobil Automobil { get; set; }
         public virtual Client Client { get; set; }
-        public virtual DetaliiComanda DetaliiComanda { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetaliiComanda> DetaliiComandas { get; set; }
     }
 }

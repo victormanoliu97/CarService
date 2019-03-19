@@ -1,7 +1,16 @@
+using System.Collections.Generic;
+using CarServiceCore.Context;
+
 namespace CarServiceCore.Repository.ImageRepository
 {
-    public interface ImageRepository
+    public interface IMageRepository
     {
-        
+        void AddImage(Imagine image);
+
+        void DeleteImage(Imagine image);
+
+        void UpdateImage(Imagine image);
+
+        List<Comanda> GetImagesForOrder(Imagine image, Comanda order);
     }
 }

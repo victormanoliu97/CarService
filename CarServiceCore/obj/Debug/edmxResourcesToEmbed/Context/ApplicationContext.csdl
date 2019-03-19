@@ -36,7 +36,6 @@
     <Property Name="ComandaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="AutoId" Type="Int32" Nullable="false" />
     <Property Name="ClientId" Type="Int32" Nullable="false" />
-    <Property Name="DetaliiComandaId" Type="Int32" Nullable="false" />
     <Property Name="StareComanda" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="DataSystem" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="DataProgramare" Type="DateTime" Precision="3" />
@@ -46,8 +45,6 @@
     <Property Name="ValoarePiese" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <NavigationProperty Name="Automobil" Relationship="Self.FK__Comanda__AutoId__70DDC3D8" FromRole="Comanda" ToRole="Automobil" />
     <NavigationProperty Name="Client" Relationship="Self.FK__Comanda__ClientI__5CD6CB2B" FromRole="Comanda" ToRole="Client" />
-    <NavigationProperty Name="DetaliiComanda" Relationship="Self.FK__Comanda__Detalii__4E88ABD4" FromRole="Comanda" ToRole="DetaliiComanda" />
-    <NavigationProperty Name="DetaliiComandas" Relationship="Self.FK__DetaliiCo__Coman__4D94879B" FromRole="Comanda" ToRole="DetaliiComanda" />
   </EntityType>
   <EntityType Name="DetaliiComanda">
     <Key>
@@ -60,25 +57,20 @@
     <Property Name="OperatieId" Type="Int32" Nullable="false" />
     <Property Name="ImagineId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Automobil" Relationship="Self.FK__DetaliiCo__AutoI__6FE99F9F" FromRole="DetaliiComanda" ToRole="Automobil" />
-    <NavigationProperty Name="Comandas" Relationship="Self.FK__Comanda__Detalii__4E88ABD4" FromRole="DetaliiComanda" ToRole="Comanda" />
     <NavigationProperty Name="Comanda" Relationship="Self.FK__DetaliiCo__Coman__4D94879B" FromRole="DetaliiComanda" ToRole="Comanda" />
     <NavigationProperty Name="Imagine" Relationship="Self.FK__DetaliiCo__Imagi__76969D2E" FromRole="DetaliiComanda" ToRole="Imagine" />
     <NavigationProperty Name="Mecanic" Relationship="Self.FK__DetaliiCo__Mecan__44FF419A" FromRole="DetaliiComanda" ToRole="Mecanic" />
     <NavigationProperty Name="Operatie" Relationship="Self.FK__DetaliiCo__Opera__45F365D3" FromRole="DetaliiComanda" ToRole="Operatie" />
-    <NavigationProperty Name="Imagines" Relationship="Self.FK__Imagine__Detalii__75A278F5" FromRole="DetaliiComanda" ToRole="Imagine" />
   </EntityType>
   <EntityType Name="Imagine">
     <Key>
       <PropertyRef Name="ImagineId" />
     </Key>
     <Property Name="ImagineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DetaliiComandaId" Type="Int32" />
     <Property Name="Titlu" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Descriere" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
     <Property Name="DataImagine" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-    <NavigationProperty Name="DetaliiComandas" Relationship="Self.FK__DetaliiCo__Imagi__76969D2E" FromRole="Imagine" ToRole="DetaliiComanda" />
-    <NavigationProperty Name="DetaliiComanda" Relationship="Self.FK__Imagine__Detalii__75A278F5" FromRole="Imagine" ToRole="DetaliiComanda" />
   </EntityType>
   <EntityType Name="Material">
     <Key>
@@ -177,18 +169,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Comanda__Detalii__4E88ABD4">
-    <End Role="DetaliiComanda" Type="Self.DetaliiComanda" Multiplicity="1" />
-    <End Role="Comanda" Type="Self.Comanda" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DetaliiComanda">
-        <PropertyRef Name="DetaliiComandaId" />
-      </Principal>
-      <Dependent Role="Comanda">
-        <PropertyRef Name="DetaliiComandaId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__DetaliiCo__Coman__4D94879B">
     <End Role="Comanda" Type="Self.Comanda" Multiplicity="1" />
     <End Role="DetaliiComanda" Type="Self.DetaliiComanda" Multiplicity="*" />
@@ -237,18 +217,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Imagine__Detalii__75A278F5">
-    <End Role="DetaliiComanda" Type="Self.DetaliiComanda" Multiplicity="0..1" />
-    <End Role="Imagine" Type="Self.Imagine" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DetaliiComanda">
-        <PropertyRef Name="DetaliiComandaId" />
-      </Principal>
-      <Dependent Role="Imagine">
-        <PropertyRef Name="DetaliiComandaId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Automobils" EntityType="Self.Automobil" />
     <EntitySet Name="Clients" EntityType="Self.Client" />
@@ -279,10 +247,6 @@
       <End Role="Client" EntitySet="Clients" />
       <End Role="Comanda" EntitySet="Comandas" />
     </AssociationSet>
-    <AssociationSet Name="FK__Comanda__Detalii__4E88ABD4" Association="Self.FK__Comanda__Detalii__4E88ABD4">
-      <End Role="DetaliiComanda" EntitySet="DetaliiComandas" />
-      <End Role="Comanda" EntitySet="Comandas" />
-    </AssociationSet>
     <AssociationSet Name="FK__DetaliiCo__Coman__4D94879B" Association="Self.FK__DetaliiCo__Coman__4D94879B">
       <End Role="Comanda" EntitySet="Comandas" />
       <End Role="DetaliiComanda" EntitySet="DetaliiComandas" />
@@ -298,10 +262,6 @@
     <AssociationSet Name="FK__DetaliiCo__Opera__45F365D3" Association="Self.FK__DetaliiCo__Opera__45F365D3">
       <End Role="Operatie" EntitySet="Operaties" />
       <End Role="DetaliiComanda" EntitySet="DetaliiComandas" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Imagine__Detalii__75A278F5" Association="Self.FK__Imagine__Detalii__75A278F5">
-      <End Role="DetaliiComanda" EntitySet="DetaliiComandas" />
-      <End Role="Imagine" EntitySet="Imagines" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -18,5 +18,7 @@ namespace CarServiceCore.Repository.ClientRepository
         Client GetClient(Client client);
 
         List<Client> PartialSearchClients(Client client);
+
+        List<Automobil> GetAutosOfClient(Client client);
     }
 }

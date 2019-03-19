@@ -8,7 +8,6 @@ namespace CarServiceCore.Utils.Transformer
         {
             dbOrder.AutoId = foundOrder.AutoId;
             dbOrder.ClientId = foundOrder.ClientId;
-            dbOrder.DetaliiComandaId = foundOrder.DetaliiComandaId;
             dbOrder.StareComanda = foundOrder.StareComanda;
             dbOrder.DataSystem = foundOrder.DataSystem;
             dbOrder.DataProgramare = foundOrder.DataProgramare;

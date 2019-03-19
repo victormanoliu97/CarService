@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using CarServiceCore.Context;
 using CarServiceCore.Utils.Transformer;
 
@@ -21,7 +22,7 @@ namespace CarServiceCore.Repository.MechanicRepository
 
         public void AddMechanic(Mecanic mechanic)
         {
-            if(mechanic == null) return;
+            if (mechanic == null) return;
             if (MechanicExists(mechanic)) return;
             _applicationContext.Mecanics.Add(mechanic);
             _applicationContext.SaveChanges();
@@ -69,13 +70,14 @@ namespace CarServiceCore.Repository.MechanicRepository
 
             var queryByFirstName = _applicationContext.Mecanics.Where(m => m.Nume.Contains(mechanic.Nume));
             var queryByLastName = _applicationContext.Mecanics.Where(m => m.Prenume.Contains(mechanic.Prenume));
-            
+
             if (queryByFirstName.Any())
             {
                 return queryByFirstName.ToList();
             }
-            
+
             return queryByLastName.Any() ? queryByLastName.ToList() : null;
+
         }
     }
 }

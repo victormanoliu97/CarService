@@ -32,7 +32,6 @@
           <ScalarProperty Name="ComandaId" ColumnName="ComandaId" />
           <ScalarProperty Name="AutoId" ColumnName="AutoId" />
           <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-          <ScalarProperty Name="DetaliiComandaId" ColumnName="DetaliiComandaId" />
           <ScalarProperty Name="StareComanda" ColumnName="StareComanda" />
           <ScalarProperty Name="DataSystem" ColumnName="DataSystem" />
           <ScalarProperty Name="DataProgramare" ColumnName="DataProgramare" />
@@ -52,6 +51,7 @@
           <ScalarProperty Name="MecanicId" ColumnName="MecanicId" />
           <ScalarProperty Name="OperatieId" ColumnName="OperatieId" />
           <ScalarProperty Name="ImagineId" ColumnName="ImagineId" />
+          <Condition ColumnName="AutoId" IsNull="false" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -59,7 +59,6 @@
       <EntityTypeMapping TypeName="Model.Imagine">
         <MappingFragment StoreEntitySet="Imagine">
           <ScalarProperty Name="ImagineId" ColumnName="ImagineId" />
-          <ScalarProperty Name="DetaliiComandaId" ColumnName="DetaliiComandaId" />
           <ScalarProperty Name="Titlu" ColumnName="Titlu" />
           <ScalarProperty Name="Descriere" ColumnName="Descriere" />
           <ScalarProperty Name="DataImagine" ColumnName="DataImagine" />

@@ -15,5 +15,7 @@ namespace CarServiceCore.Repository.AutoRepository
         void UpdateAuto(Automobil auto);
 
         void DeleteAuto(Automobil auto);
+
+        List<Comanda> GetOrdersForCar(Automobil auto);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CarServiceCore.Context;
 using CarServiceCore.Model;
@@ -8,12 +9,28 @@ namespace CarServiceCore.Repository.OrderRepository
     {
         List<Comanda> GetOrdersOfClient(Client client);
         
-        void AddOrder(Comanda order, DetaliiComanda orderDetails);
+        void AddOrder(Comanda order);
 
         void DeleteOrder(Comanda order);
 
         void UpdateOrder(Comanda order);
 
-        
+        bool OrderExists(Comanda order);
+
+        void SetStatusToOrder(Comanda order, string status);
+
+        List<Comanda> GetOrderWithStatus(Comanda order, string status);
+
+        List<Operatie> GetOperationsForOrder(Comanda order);
+
+        List<Imagine> GetImagesForOrder(Comanda order);
+
+        List<Mecanic> GetMechanicsForOrder(Comanda order);
+
+        List<Comanda> GetOrdersBetweenDates(DateTime fromDate, DateTime toDate);
+
+        List<Mecanic> GetAvailableMechanicsToExecuteOperation(Comanda order);
+
+        void AddOrderDetailsForOrder(DetaliiComanda orderDetail);
     }
 }

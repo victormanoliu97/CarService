@@ -19,12 +19,10 @@
         <AssociationConnector Association="Model.FK__Comanda__AutoId__70DDC3D8" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK__DetaliiCo__AutoI__6FE99F9F" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK__Comanda__ClientI__5CD6CB2B" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK__Comanda__Detalii__4E88ABD4" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK__DetaliiCo__Coman__4D94879B" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK__DetaliiCo__Imagi__76969D2E" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK__DetaliiCo__Mecan__44FF419A" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK__DetaliiCo__Opera__45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK__Imagine__Detalii__75A278F5" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

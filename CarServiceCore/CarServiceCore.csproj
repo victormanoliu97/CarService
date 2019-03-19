@@ -126,6 +126,7 @@
     <Compile Include="Repository\ClientRepository\ClientRepository.cs" />
     <Compile Include="Repository\ClientRepository\IClientRepository.cs" />
     <Compile Include="Repository\ImageRepository\ImageRepository.cs" />
+    <Compile Include="Repository\ImageRepository\ImageRepositoryImpl.cs" />
     <Compile Include="Repository\MaterialRepository\IMaterialRepository.cs" />
     <Compile Include="Repository\MaterialRepository\MaterialRepository.cs" />
     <Compile Include="Repository\MechanicRepository\IMechanicRepository.cs" />
@@ -135,8 +136,10 @@
     <Compile Include="Utils\Transformer\AutoTransformer.cs" />
     <Compile Include="Utils\Transformer\ChassisTransformer.cs" />
     <Compile Include="Utils\Transformer\ClientTransformer.cs" />
+    <Compile Include="Utils\Transformer\ImageTransformer.cs" />
     <Compile Include="Utils\Transformer\MaterialTransformer.cs" />
     <Compile Include="Utils\Transformer\MechanicTransformer.cs" />
+    <Compile Include="Utils\Transformer\OrderDetailsTransformer.cs" />
     <Compile Include="Utils\Transformer\OrderTransformer.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -23,13 +23,13 @@ namespace CoreTest.RepositoryTests
         {
             return new Client
             {
-                Nume = "Popescu",
-                Prenume = "Ion",
-                Email = "ion.popescu@gmail.com",
+                Nume = "Balan",
+                Prenume = "Dan",
+                Email = "balan.dan@gmail.com",
                 Judet = "Iasi",
                 Localitate = "Iasi",
                 Adresa = "Tudor",
-                Telefon = "0752094300"
+                Telefon = "0752094411"
             };
         }
         
@@ -88,6 +88,16 @@ namespace CoreTest.RepositoryTests
             Client testClient = CreateTestClientEntity();
             ClientRepository testClientRepository = CreateTestClientRepository();
             testClientRepository.PartialSearchClients(testClient).Count.Should().BeGreaterThan(1);
+        }
+    
+        [TestMethod]
+        public void WhenClientHasAutos_GetAutosOfClient_ItShouldReturnResults()
+        {
+            Entities applicationContext = CreateTestEntities();
+            ClientRepository testClientRepository = new ClientRepository(applicationContext);
+            int testClientId = 4;
+            Client testClient = applicationContext.Clients.FirstOrDefault(c => c.ClientId == testClientId);
+            testClientRepository.GetAutosOfClient(testClient).Count.Should().BeGreaterThan(0);
         }
     }
 }
