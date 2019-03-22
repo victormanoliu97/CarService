@@ -162,25 +162,6 @@ namespace CarServiceCore.Repository.OrderRepository
             return getOrderBetweenDatesQuery.Any() ? getOrderBetweenDatesQuery.ToList() : null;
         }
 
-        public List<Mecanic> GetAvailableMechanicsToExecuteOperation(Comanda order)
-        {
-            var getAllMechanicsAssigned = from o in _applicationContext.DetaliiComandas
-                select o.MecanicId;
-
-            var getAllMechanics = from o in _applicationContext.Mecanics
-                select o.MecanicId;
-
-            var availableIdList = getAllMechanics.ToList().Except(getAllMechanicsAssigned);
-
-            var availableMechanics = new List<Mecanic>();
-            foreach (var id in availableIdList)
-            {
-                availableMechanics.Add(_applicationContext.Mecanics.First(i => i.MecanicId == id));
-            }
-
-            return availableMechanics;
-        }
-
         public void AddOrderDetailsForOrder(DetaliiComanda orderDetails)
         {
             var orderDetailsToAdd = new DetaliiComanda

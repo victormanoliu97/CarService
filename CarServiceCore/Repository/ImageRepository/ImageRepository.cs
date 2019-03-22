@@ -7,7 +7,7 @@ namespace CarServiceCore.Repository.ImageRepository
     {
         void AddImage(Imagine image);
 
-        void DeleteImage(Imagine image);
+        void DeleteImage(int imageId);
 
         void UpdateImage(Imagine image);
 

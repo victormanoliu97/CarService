@@ -11,12 +11,14 @@ namespace CarServiceCore.Repository.MechanicRepository
 
         bool MechanicExists(Mecanic mechanic);
 
-        void DeleteMechanic(Mecanic mechanic);
+        void DeleteMechanic(int mechanicId);
 
         void UpdateMechanic(Mecanic mechanic);
 
         Mecanic GetMechanic(Mecanic mechanic);
 
         List<Mecanic> PartialMechanicsSearch(Mecanic mechanic);
+
+        List<Mecanic> GetAvailableMechanicsToExecuteOperation();
     }
 }

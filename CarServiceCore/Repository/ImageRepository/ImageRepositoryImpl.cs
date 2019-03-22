@@ -22,10 +22,21 @@ namespace CarServiceCore.Repository.ImageRepository
             _applicationContext.SaveChanges();
         }
 
-        public void DeleteImage(Imagine image)
+        public void DeleteImage(int imageId)
         {
+            if (imageId == null) return;
+            var image = _applicationContext.Imagines.FirstOrDefault(i => i.ImagineId == imageId);
             if (image == null) return;
-            if (_applicationContext.Imagines.FirstOrDefault(i => i.ImagineId == image.ImagineId) == null) return;
+            
+            var queryToGetOrderDetailsForMechanic = from orderDetails in _applicationContext.DetaliiComandas
+                where orderDetails.ImagineId == imageId
+                select orderDetails;
+
+            foreach (var orderDetailsImage in queryToGetOrderDetailsForMechanic.ToList())
+            {
+                orderDetailsImage.ImagineId = 0;
+            }
+            
             _applicationContext.Imagines.Remove(image);
             _applicationContext.SaveChanges();
         }

@@ -23,13 +23,13 @@ namespace CoreTest.RepositoryTests
         {
             return new Client
             {
-                Nume = "Balan",
-                Prenume = "Dan",
-                Email = "balan.dan@gmail.com",
+                Nume = "Popesculescu",
+                Prenume = "Ion",
+                Email = "popesculescu.ion@gmail.com",
                 Judet = "Iasi",
                 Localitate = "Iasi",
                 Adresa = "Tudor",
-                Telefon = "0752094411"
+                Telefon = "0752094423"
             };
         }
         
@@ -66,7 +66,7 @@ namespace CoreTest.RepositoryTests
             ClientRepository clientRepository = new ClientRepository(applicationContext);
             int testClientId = 2;
             Client testClient = applicationContext.Clients.FirstOrDefault(c => c.ClientId == testClientId);
-            clientRepository.DeleteClient(testClient);
+            clientRepository.DeleteClient(testClientId);
             applicationContext.Clients.FirstOrDefault(c => c.ClientId == testClientId).Should().BeNull();
         }
 
@@ -85,9 +85,10 @@ namespace CoreTest.RepositoryTests
         [TestMethod]        
         public void WhenClientsWithCloseFirstNamesExists_PartialClientSearch_ItShouldReturnResults()
         {
-            Client testClient = CreateTestClientEntity();
             ClientRepository testClientRepository = CreateTestClientRepository();
-            testClientRepository.PartialSearchClients(testClient).Count.Should().BeGreaterThan(1);
+            var clientFirstName = "asasas";
+            var clientLastame = "sasasasa";
+            testClientRepository.PartialSearchClients(clientFirstName, clientLastame).Should().BeNull();
         }
     
         [TestMethod]

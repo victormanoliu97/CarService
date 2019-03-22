@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using CarServiceCore.Context;
 using CarServiceCore.Utils.Transformer;
 
@@ -33,11 +34,31 @@ namespace CarServiceCore.Repository.ClientRepository
             return foundClient != null;
         }
 
-        public void DeleteClient(Client client)
+        public void DeleteClient(int clientId)
         {
-            if (client == null) return;
+            if (clientId == null) return;
+            var client = _applicationContext.Clients.FirstOrDefault(c => c.ClientId == clientId);
             if (ClientExists(client))
             {
+                var queryGetAutosForClient = from auto in _applicationContext.Automobils
+                    where auto.ClientId == client.ClientId
+                    select auto;
+
+                foreach (var auto in queryGetAutosForClient.ToList())
+                {
+                    foreach (var autoOrder in auto.Comandas)
+                    {
+                        _applicationContext.Comandas.Remove(autoOrder);
+                    }
+
+                    foreach (var autoOrderDetail in auto.DetaliiComandas)
+                    {
+                        _applicationContext.DetaliiComandas.Remove(autoOrderDetail);
+                    }
+
+                    _applicationContext.Automobils.Remove(auto);
+                }
+
                 _applicationContext.Clients.Remove(client);
                 _applicationContext.SaveChanges();
             }
@@ -55,19 +76,19 @@ namespace CarServiceCore.Repository.ClientRepository
             _applicationContext.SaveChanges();
         }
 
-        public Client GetClient(Client client)
+        public Client GetClient(int clientIc)
         {
-            if (client == null) return null;
-            var foundClient = _applicationContext.Clients.FirstOrDefault(client1 => client1.ClientId == client.ClientId);
+            if (clientIc == null) return null;
+            var foundClient = _applicationContext.Clients.FirstOrDefault(client1 => client1.ClientId == clientIc);
             return foundClient;
         }
 
-        public List<Client> PartialSearchClients(Client client)
+        public List<Client> PartialSearchClients(string firstName, string lastName)
         {
-            if (client == null) return null;
+            if (firstName == null && lastName == null) return null;
             
-            var queryByFirstName = _applicationContext.Clients.Where(c => c.Nume.Contains(client.Nume));
-            var queryByLastName = _applicationContext.Clients.Where(c => c.Nume.Contains(client.Prenume));
+            var queryByFirstName = _applicationContext.Clients.Where(c => c.Nume.Contains(firstName));
+            var queryByLastName = _applicationContext.Clients.Where(c => c.Nume.Contains(lastName));
 
             if (queryByFirstName.Any())
             {

@@ -57,7 +57,7 @@ namespace CoreTest.RepositoryTests
             AutoRepository testAutoRepository = new AutoRepository(applicationContext);
             int testAutoId = 1;
             Automobil testAuto = applicationContext.Automobils.FirstOrDefault(a => a.AutoId == testAutoId);
-            testAutoRepository.DeleteAuto(testAuto);
+            testAutoRepository.DeleteAuto(testAutoId);
             applicationContext.Automobils.FirstOrDefault(a => a.AutoId == testAutoId).Should().BeNull();
         }
 

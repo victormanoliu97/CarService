@@ -54,7 +54,7 @@ namespace CoreTest.RepositoryTests
             MechanicRepository testMechanicRepository = new MechanicRepository(applicationContext);
             int testMechanicId = 1;
             Mecanic testMechanic = applicationContext.Mecanics.FirstOrDefault(m => m.MecanicId == testMechanicId);
-            testMechanicRepository.DeleteMechanic(testMechanic);
+            testMechanicRepository.DeleteMechanic(testMechanicId);
             applicationContext.Mecanics.FirstOrDefault(m => m.MecanicId == testMechanicId).Should().BeNull();
         }
 

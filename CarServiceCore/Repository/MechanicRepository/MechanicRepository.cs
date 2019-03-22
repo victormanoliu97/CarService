@@ -35,11 +35,25 @@ namespace CarServiceCore.Repository.MechanicRepository
             return foundMechanic != null;
         }
 
-        public void DeleteMechanic(Mecanic mechanic)
+        public void DeleteMechanic(int mechanicId)
         {
-            if (mechanic == null) return;
+            if (mechanicId == null) return;
+            var mechanic = _applicationContext.Mecanics.FirstOrDefault(m => m.MecanicId == mechanicId);
             if (MechanicExists(mechanic))
             {
+                var queryToGetOrderDetailsForMechanic = from orderDetails in _applicationContext.DetaliiComandas
+                    where orderDetails.MecanicId == mechanicId
+                    select orderDetails;
+                
+                // When we delete a mechanic we assign another available mechanic to take care of the Order
+                foreach (var orderDetails in queryToGetOrderDetailsForMechanic.ToList())
+                {
+                    foreach(var availableMechanic in GetAvailableMechanicsToExecuteOperation())
+                    {
+                        orderDetails.MecanicId = availableMechanic.MecanicId;
+                    }
+                }
+
                 _applicationContext.Mecanics.Remove(mechanic);
                 _applicationContext.SaveChanges();
             }
@@ -78,6 +92,25 @@ namespace CarServiceCore.Repository.MechanicRepository
 
             return queryByLastName.Any() ? queryByLastName.ToList() : null;
 
+        }
+        
+        public List<Mecanic> GetAvailableMechanicsToExecuteOperation()
+        {
+            var getAllMechanicsAssigned = from o in _applicationContext.DetaliiComandas
+                select o.MecanicId;
+
+            var getAllMechanics = from o in _applicationContext.Mecanics
+                select o.MecanicId;
+
+            var availableIdList = getAllMechanics.ToList().Except(getAllMechanicsAssigned);
+
+            var availableMechanics = new List<Mecanic>();
+            foreach (var id in availableIdList)
+            {
+                availableMechanics.Add(_applicationContext.Mecanics.First(i => i.MecanicId == id));
+            }
+
+            return availableMechanics;
         }
     }
 }

@@ -29,8 +29,6 @@ namespace CarServiceCore.Repository.OrderRepository
 
         List<Comanda> GetOrdersBetweenDates(DateTime fromDate, DateTime toDate);
 
-        List<Mecanic> GetAvailableMechanicsToExecuteOperation(Comanda order);
-
         void AddOrderDetailsForOrder(DetaliiComanda orderDetail);
     }
 }

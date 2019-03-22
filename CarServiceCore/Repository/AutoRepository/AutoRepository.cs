@@ -49,10 +49,21 @@ namespace CarServiceCore.Repository.AutoRepository
             _applicationContext.SaveChanges();
         }
 
-        public void DeleteAuto(Automobil auto)
+        public void DeleteAuto(int autoId)
         {
+            if (autoId == null) return;
+            var auto = _applicationContext.Automobils.FirstOrDefault(a => a.AutoId == autoId);
             if (auto == null) return;
-            var foundAuto = _applicationContext.Automobils.FirstOrDefault(a => a.AutoId == auto.AutoId);
+            foreach (var autoOrder in GetOrdersForCar(auto))
+            {
+                _applicationContext.Comandas.Remove(autoOrder);
+            }
+
+            foreach (var autoOrderDetails in auto.DetaliiComandas)
+            {
+                _applicationContext.DetaliiComandas.Remove(autoOrderDetails);
+            }
+
             _applicationContext.Automobils.Remove(auto);
             _applicationContext.SaveChanges();
         }

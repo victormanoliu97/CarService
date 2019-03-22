@@ -11,14 +11,15 @@ namespace CarServiceCore.Repository.ClientRepository
 
         bool ClientExists(Client client);
 
-        void DeleteClient(Client client);
+        void DeleteClient(int clientId);
 
         void UpdateClient(Client client);
 
-        Client GetClient(Client client);
+        Client GetClient(int clientIc);
 
-        List<Client> PartialSearchClients(Client client);
+        List<Client> PartialSearchClients(string firstName, string lastName);
 
         List<Automobil> GetAutosOfClient(Client client);
+       
     }
 }

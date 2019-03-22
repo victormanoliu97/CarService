@@ -117,6 +117,9 @@
     <Compile Include="Context\Sasiu.cs">
       <DependentUpon>ApplicationContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\AutoModel.cs" />
+    <Compile Include="Model\ClientModel.cs" />
+    <Compile Include="Model\OrderModel.cs" />
     <Compile Include="Model\OrderStatusEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AutoRepository\AutoRepository.cs" />
@@ -131,14 +134,20 @@
     <Compile Include="Repository\MaterialRepository\MaterialRepository.cs" />
     <Compile Include="Repository\MechanicRepository\IMechanicRepository.cs" />
     <Compile Include="Repository\MechanicRepository\MechanicRepository.cs" />
+    <Compile Include="Repository\OperationsRepository\IOperationsRepository.cs" />
+    <Compile Include="Repository\OperationsRepository\OperationsRepository.cs" />
     <Compile Include="Repository\OrderRepository\IOrderRepository.cs" />
     <Compile Include="Repository\OrderRepository\OrderRepository.cs" />
+    <Compile Include="Utils\Mapper\AutoMapper.cs" />
+    <Compile Include="Utils\Mapper\ClientMapper.cs" />
+    <Compile Include="Utils\Mapper\OrderMapper.cs" />
     <Compile Include="Utils\Transformer\AutoTransformer.cs" />
     <Compile Include="Utils\Transformer\ChassisTransformer.cs" />
     <Compile Include="Utils\Transformer\ClientTransformer.cs" />
     <Compile Include="Utils\Transformer\ImageTransformer.cs" />
     <Compile Include="Utils\Transformer\MaterialTransformer.cs" />
     <Compile Include="Utils\Transformer\MechanicTransformer.cs" />
+    <Compile Include="Utils\Transformer\OperationsTransformer.cs" />
     <Compile Include="Utils\Transformer\OrderDetailsTransformer.cs" />
     <Compile Include="Utils\Transformer\OrderTransformer.cs" />
   </ItemGroup>
