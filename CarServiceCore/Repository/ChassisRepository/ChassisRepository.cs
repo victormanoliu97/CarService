@@ -25,10 +25,10 @@ namespace CarServiceCore.Repository.ChassisRepository
             return _applicationContext.Sasius.ToList();
         }
 
-        public Sasiu GetChassis(Sasiu chassis)
+        public Sasiu GetChassis(int chassisId)
         {
-            if (chassis == null) return null;
-            var foundChassis = _applicationContext.Sasius.FirstOrDefault(s => s.SasiuId == chassis.SasiuId);
+            if (chassisId == null) return null;
+            var foundChassis = _applicationContext.Sasius.FirstOrDefault(s => s.SasiuId == chassisId);
             return foundChassis;
         }
 

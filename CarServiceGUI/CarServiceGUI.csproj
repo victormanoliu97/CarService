@@ -56,6 +56,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddOrderPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddOrderPopup.Designer.cs">
+      <DependentUpon>AddOrderPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoPopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutoPopupForm.Designer.cs">
+      <DependentUpon>AutoPopupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClientPopupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +84,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session\OperationTypes.cs" />
     <Compile Include="Session\SessionData.cs" />
+    <EmbeddedResource Include="AddOrderPopup.resx">
+      <DependentUpon>AddOrderPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoPopupForm.resx">
+      <DependentUpon>AutoPopupForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ClientPopupForm.resx">
       <DependentUpon>ClientPopupForm.cs</DependentUpon>
     </EmbeddedResource>

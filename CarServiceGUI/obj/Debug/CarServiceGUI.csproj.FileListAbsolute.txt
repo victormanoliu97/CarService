@@ -18,3 +18,5 @@ D:\Facultate\Anul 3\Semestrul 2\TSP.NET\Project\CarServiceProject\CarServiceGUI\
 D:\Facultate\Anul 3\Semestrul 2\TSP.NET\Project\CarServiceProject\CarServiceGUI\bin\Debug\EntityFramework.SqlServer.xml
 D:\Facultate\Anul 3\Semestrul 2\TSP.NET\Project\CarServiceProject\CarServiceGUI\bin\Debug\System.Data.SqlClient.dll
 D:\Facultate\Anul 3\Semestrul 2\TSP.NET\Project\CarServiceProject\CarServiceGUI\obj\Debug\CarServiceGUI.ClientPopupForm.resources
+D:\Facultate\Anul 3\Semestrul 2\TSP.NET\Project\CarServiceProject\CarServiceGUI\obj\Debug\CarServiceGUI.AutoPopupForm.resources
+D:\Facultate\Anul 3\Semestrul 2\TSP.NET\Project\CarServiceProject\CarServiceGUI\obj\Debug\CarServiceGUI.AddOrderPopup.resources

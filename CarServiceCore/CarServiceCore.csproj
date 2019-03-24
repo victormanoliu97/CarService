@@ -118,6 +118,7 @@
       <DependentUpon>ApplicationContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\AutoModel.cs" />
+    <Compile Include="Model\ChassisModel.cs" />
     <Compile Include="Model\ClientModel.cs" />
     <Compile Include="Model\OrderModel.cs" />
     <Compile Include="Model\OrderStatusEnum.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Repository\OrderRepository\IOrderRepository.cs" />
     <Compile Include="Repository\OrderRepository\OrderRepository.cs" />
     <Compile Include="Utils\Mapper\AutoMapper.cs" />
+    <Compile Include="Utils\Mapper\ChassisMapper.cs" />
     <Compile Include="Utils\Mapper\ClientMapper.cs" />
     <Compile Include="Utils\Mapper\OrderMapper.cs" />
     <Compile Include="Utils\Transformer\AutoTransformer.cs" />

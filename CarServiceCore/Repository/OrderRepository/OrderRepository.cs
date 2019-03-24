@@ -40,6 +40,7 @@ namespace CarServiceCore.Repository.OrderRepository
                 StareComanda = order.StareComanda == null ? OrderStatusEnum.WaitingOrder.ElementAt(0).Value : order.StareComanda,
                 DataSystem = DateTime.Now,
                 DataProgramare = order.DataProgramare,
+                DataFinalizare = order.DataFinalizare == null ? DateTime.Now.AddDays(1) : order.DataFinalizare,
                 Descriere = order.Descriere,
                 KmBord = order.KmBord == null ? 0 : order.KmBord,
                 ValoarePiese = order.ValoarePiese == null ? 0 : order.ValoarePiese

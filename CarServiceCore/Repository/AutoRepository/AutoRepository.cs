@@ -71,7 +71,16 @@ namespace CarServiceCore.Repository.AutoRepository
         public List<Comanda> GetOrdersForCar(Automobil auto)
         {
             if (auto == null) return null;
-            return _applicationContext.Automobils.FirstOrDefault(a => a.AutoId == auto.AutoId) == null ? null : auto.Comandas.ToList();
+            var query = from o in _applicationContext.Comandas
+                where o.AutoId == auto.AutoId
+                select o;
+
+            return query.Any() ? query.ToList() : null;
+        }
+
+        public Automobil GetAuto(int autoId)
+        {
+            return _applicationContext.Automobils.First(a => a.AutoId == autoId);
         }
     }
 }

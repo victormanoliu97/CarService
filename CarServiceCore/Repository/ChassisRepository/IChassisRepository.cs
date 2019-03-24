@@ -9,7 +9,7 @@ namespace CarServiceCore.Repository.ChassisRepository
 
         List<Sasiu> GetAllChassis();
 
-        Sasiu GetChassis(Sasiu chassis);
+        Sasiu GetChassis(int chassisId);
 
         void AddChassis(Sasiu chassis);
 

@@ -43,6 +43,11 @@
             this.modifyAutoButton = new System.Windows.Forms.Button();
             this.deleteAutoButton = new System.Windows.Forms.Button();
             this.getOrdersForAutoButton = new System.Windows.Forms.Button();
+            this.ordersListBox = new System.Windows.Forms.ListBox();
+            this.addOrderButton = new System.Windows.Forms.Button();
+            this.modifyOrderButton = new System.Windows.Forms.Button();
+            this.deleteOrderButton = new System.Windows.Forms.Button();
+            this.viewOrderButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // clientFirstNameInput
@@ -139,6 +144,7 @@
             this.clientAutosListBox.Size = new System.Drawing.Size(195, 251);
             this.clientAutosListBox.TabIndex = 10;
             this.clientAutosListBox.Visible = false;
+            this.clientAutosListBox.SelectedIndexChanged += new System.EventHandler(this.clientAutosListBox_SelectedIndexChanged);
             // 
             // clientCarsLabel
             // 
@@ -158,6 +164,8 @@
             this.addAutoToClientButton.TabIndex = 12;
             this.addAutoToClientButton.Text = "Add Auto For Client";
             this.addAutoToClientButton.UseVisualStyleBackColor = true;
+            this.addAutoToClientButton.Visible = false;
+            this.addAutoToClientButton.Click += new System.EventHandler(this.addAutoToClientButton_Click);
             // 
             // modifyAutoButton
             // 
@@ -168,6 +176,7 @@
             this.modifyAutoButton.Text = "Modify Auto";
             this.modifyAutoButton.UseVisualStyleBackColor = true;
             this.modifyAutoButton.Visible = false;
+            this.modifyAutoButton.Click += new System.EventHandler(this.modifyAutoButton_Click);
             // 
             // deleteAutoButton
             // 
@@ -178,6 +187,7 @@
             this.deleteAutoButton.Text = "Delete Auto";
             this.deleteAutoButton.UseVisualStyleBackColor = true;
             this.deleteAutoButton.Visible = false;
+            this.deleteAutoButton.Click += new System.EventHandler(this.deleteAutoButton_Click);
             // 
             // getOrdersForAutoButton
             // 
@@ -188,12 +198,69 @@
             this.getOrdersForAutoButton.Text = "Get Orders For Auto";
             this.getOrdersForAutoButton.UseVisualStyleBackColor = true;
             this.getOrdersForAutoButton.Visible = false;
+            this.getOrdersForAutoButton.Click += new System.EventHandler(this.getOrdersForAutoButton_Click);
+            // 
+            // ordersListBox
+            // 
+            this.ordersListBox.FormattingEnabled = true;
+            this.ordersListBox.Location = new System.Drawing.Point(413, 198);
+            this.ordersListBox.Name = "ordersListBox";
+            this.ordersListBox.Size = new System.Drawing.Size(204, 251);
+            this.ordersListBox.TabIndex = 16;
+            this.ordersListBox.Visible = false;
+            this.ordersListBox.SelectedIndexChanged += new System.EventHandler(this.ordersListBox_SelectedIndexChanged);
+            // 
+            // addOrderButton
+            // 
+            this.addOrderButton.Location = new System.Drawing.Point(213, 368);
+            this.addOrderButton.Name = "addOrderButton";
+            this.addOrderButton.Size = new System.Drawing.Size(104, 34);
+            this.addOrderButton.TabIndex = 17;
+            this.addOrderButton.Text = "Add Order For Auto";
+            this.addOrderButton.UseVisualStyleBackColor = true;
+            this.addOrderButton.Visible = false;
+            this.addOrderButton.Click += new System.EventHandler(this.addOrderButton_Click);
+            // 
+            // modifyOrderButton
+            // 
+            this.modifyOrderButton.Location = new System.Drawing.Point(623, 198);
+            this.modifyOrderButton.Name = "modifyOrderButton";
+            this.modifyOrderButton.Size = new System.Drawing.Size(104, 34);
+            this.modifyOrderButton.TabIndex = 18;
+            this.modifyOrderButton.Text = "Modify Order";
+            this.modifyOrderButton.UseVisualStyleBackColor = true;
+            this.modifyOrderButton.Visible = false;
+            // 
+            // deleteOrderButton
+            // 
+            this.deleteOrderButton.Location = new System.Drawing.Point(623, 265);
+            this.deleteOrderButton.Name = "deleteOrderButton";
+            this.deleteOrderButton.Size = new System.Drawing.Size(104, 34);
+            this.deleteOrderButton.TabIndex = 19;
+            this.deleteOrderButton.Text = "Delete Order";
+            this.deleteOrderButton.UseVisualStyleBackColor = true;
+            this.deleteOrderButton.Visible = false;
+            // 
+            // viewOrderButton
+            // 
+            this.viewOrderButton.Location = new System.Drawing.Point(623, 326);
+            this.viewOrderButton.Name = "viewOrderButton";
+            this.viewOrderButton.Size = new System.Drawing.Size(104, 34);
+            this.viewOrderButton.TabIndex = 20;
+            this.viewOrderButton.Text = "View Order";
+            this.viewOrderButton.UseVisualStyleBackColor = true;
+            this.viewOrderButton.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(813, 450);
+            this.Controls.Add(this.viewOrderButton);
+            this.Controls.Add(this.deleteOrderButton);
+            this.Controls.Add(this.modifyOrderButton);
+            this.Controls.Add(this.addOrderButton);
+            this.Controls.Add(this.ordersListBox);
             this.Controls.Add(this.getOrdersForAutoButton);
             this.Controls.Add(this.deleteAutoButton);
             this.Controls.Add(this.modifyAutoButton);
@@ -233,6 +300,11 @@
         private System.Windows.Forms.Button modifyAutoButton;
         private System.Windows.Forms.Button deleteAutoButton;
         private System.Windows.Forms.Button getOrdersForAutoButton;
+        private System.Windows.Forms.ListBox ordersListBox;
+        private System.Windows.Forms.Button addOrderButton;
+        private System.Windows.Forms.Button modifyOrderButton;
+        private System.Windows.Forms.Button deleteOrderButton;
+        private System.Windows.Forms.Button viewOrderButton;
     }
 }
 
