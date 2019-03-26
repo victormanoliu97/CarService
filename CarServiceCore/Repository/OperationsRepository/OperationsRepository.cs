@@ -63,5 +63,6 @@ namespace CarServiceCore.Repository.OperationsRepository
             var foundOperation = _applicationContext.Operaties.FirstOrDefault(o => o.OperatieId == operation.OperatieId);
             return foundOperation != null;
         }
+
     }
 }

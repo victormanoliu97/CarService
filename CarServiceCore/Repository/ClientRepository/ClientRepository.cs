@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
 using CarServiceCore.Context;
 using CarServiceCore.Utils.Transformer;
 
@@ -46,12 +45,12 @@ namespace CarServiceCore.Repository.ClientRepository
 
                 foreach (var auto in queryGetAutosForClient.ToList())
                 {
-                    foreach (var autoOrder in auto.Comandas)
+                    foreach (var autoOrder in auto.Comandas.ToList())
                     {
                         _applicationContext.Comandas.Remove(autoOrder);
                     }
 
-                    foreach (var autoOrderDetail in auto.DetaliiComandas)
+                    foreach (var autoOrderDetail in auto.DetaliiComandas.ToList())
                     {
                         _applicationContext.DetaliiComandas.Remove(autoOrderDetail);
                     }

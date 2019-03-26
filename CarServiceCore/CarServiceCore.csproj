@@ -120,6 +120,8 @@
     <Compile Include="Model\AutoModel.cs" />
     <Compile Include="Model\ChassisModel.cs" />
     <Compile Include="Model\ClientModel.cs" />
+    <Compile Include="Model\MechanicModel.cs" />
+    <Compile Include="Model\OperationModel.cs" />
     <Compile Include="Model\OrderModel.cs" />
     <Compile Include="Model\OrderStatusEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,6 +144,8 @@
     <Compile Include="Utils\Mapper\AutoMapper.cs" />
     <Compile Include="Utils\Mapper\ChassisMapper.cs" />
     <Compile Include="Utils\Mapper\ClientMapper.cs" />
+    <Compile Include="Utils\Mapper\MechanicMapper.cs" />
+    <Compile Include="Utils\Mapper\OperationsMapper.cs" />
     <Compile Include="Utils\Mapper\OrderMapper.cs" />
     <Compile Include="Utils\Transformer\AutoTransformer.cs" />
     <Compile Include="Utils\Transformer\ChassisTransformer.cs" />

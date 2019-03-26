@@ -1,4 +1,3 @@
-using System.Net.Mime;
 using CarServiceCore.Context;
 
 namespace CarServiceCore.Utils.Transformer

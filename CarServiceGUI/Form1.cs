@@ -61,6 +61,7 @@ namespace CarServiceGUI
             }
             else
             {
+                MessageBox.Show("No client found");
                 modifyClientButton.Visible = false;
                 deleteClientButton.Visible = false;
                 clientsFoundListBox.Visible = false;
@@ -178,6 +179,14 @@ namespace CarServiceGUI
             modifyOrderButton.Visible = true;
             deleteOrderButton.Visible = true;
             viewOrderButton.Visible = true;
+        }
+
+        private void modifyOrderButton_Click(object sender, EventArgs e)
+        {
+            sessionData.selectedOrder = OrderMapper.FromModelToEntity((OrderModel)ordersListBox.SelectedItem);
+            sessionData.Operation_Type = OperationTypes.MODIFY_ORDER_DETAILS;
+            OrderDetailsPopup orderDetailsPopup = new OrderDetailsPopup(sessionData);
+            orderDetailsPopup.Show();
         }
     }
 }

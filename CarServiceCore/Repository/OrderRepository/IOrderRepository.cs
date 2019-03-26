@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using CarServiceCore.Context;
-using CarServiceCore.Model;
 
 namespace CarServiceCore.Repository.OrderRepository
 {

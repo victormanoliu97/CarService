@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
 using CarServiceCore.Context;
 using CarServiceCore.Utils.Transformer;
 
@@ -44,17 +44,20 @@ namespace CarServiceCore.Repository.MechanicRepository
                 var queryToGetOrderDetailsForMechanic = from orderDetails in _applicationContext.DetaliiComandas
                     where orderDetails.MecanicId == mechanicId
                     select orderDetails;
-                
-                // When we delete a mechanic we assign another available mechanic to take care of the Order
-                foreach (var orderDetails in queryToGetOrderDetailsForMechanic.ToList())
+
+                if (queryToGetOrderDetailsForMechanic.Any())
                 {
-                    foreach(var availableMechanic in GetAvailableMechanicsToExecuteOperation())
+                    // When we delete a mechanic we assign another available mechanic to take care of the Order
+                    foreach (var orderDetails in queryToGetOrderDetailsForMechanic.ToList())
                     {
-                        orderDetails.MecanicId = availableMechanic.MecanicId;
+                        foreach (var availableMechanic in GetAvailableMechanicsToExecuteOperation())
+                        {
+                            orderDetails.MecanicId = availableMechanic.MecanicId;
+                        }
                     }
                 }
 
-                _applicationContext.Mecanics.Remove(mechanic);
+                _applicationContext.Mecanics.Remove(mechanic ?? throw new InvalidOperationException());
                 _applicationContext.SaveChanges();
             }
         }

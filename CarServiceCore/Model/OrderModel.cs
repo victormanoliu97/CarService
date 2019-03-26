@@ -9,6 +9,11 @@ namespace CarServiceCore.Model
         public int ClientId { get; set; }
         public string StareComanda { get; set; }
         public System.DateTime DataSystem { get; set; }
+        
+        public Nullable<System.DateTime> AppointmentDate { get; set; }
+        
+        public Nullable<System.DateTime> FinalizationDate { get; set; }
+        
         public int KmBord { get; set; }
         public string Descriere { get; set; }
         public decimal ValoarePiese { get; set; }
@@ -16,7 +21,7 @@ namespace CarServiceCore.Model
 
         public override string ToString()
         {
-            return Descriere;
+            return Descriere + " " + StareComanda;
         }
     }
 }

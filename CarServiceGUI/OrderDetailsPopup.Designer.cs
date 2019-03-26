@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.saveOrderDetailsButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.totalPriceTextBox = new System.Windows.Forms.TextBox();
@@ -39,25 +39,31 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.autoComboBox = new System.Windows.Forms.ComboBox();
-            this.clientComboBox = new System.Windows.Forms.ComboBox();
+            this.orderMechanicsListBox = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.addMechanicButton = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.orderOperationsCheckedList = new System.Windows.Forms.CheckedListBox();
+            this.orderOperationsListBox = new System.Windows.Forms.ListBox();
+            this.saveOperationChoice = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // saveOrderDetailsButton
             // 
-            this.button1.Location = new System.Drawing.Point(623, 360);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(143, 45);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.saveOrderDetailsButton.Location = new System.Drawing.Point(12, 363);
+            this.saveOrderDetailsButton.Name = "saveOrderDetailsButton";
+            this.saveOrderDetailsButton.Size = new System.Drawing.Size(143, 45);
+            this.saveOrderDetailsButton.TabIndex = 20;
+            this.saveOrderDetailsButton.Text = "Save";
+            this.saveOrderDetailsButton.UseVisualStyleBackColor = true;
+            this.saveOrderDetailsButton.Click += new System.EventHandler(this.saveOrderDetailsButton_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(135, 92);
+            this.label5.Location = new System.Drawing.Point(12, 92);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 19;
@@ -66,7 +72,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(314, 92);
+            this.label4.Location = new System.Drawing.Point(521, 18);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 13);
             this.label4.TabIndex = 18;
@@ -74,14 +80,14 @@
             // 
             // totalPriceTextBox
             // 
-            this.totalPriceTextBox.Location = new System.Drawing.Point(317, 108);
+            this.totalPriceTextBox.Location = new System.Drawing.Point(524, 44);
             this.totalPriceTextBox.Name = "totalPriceTextBox";
             this.totalPriceTextBox.Size = new System.Drawing.Size(100, 20);
             this.totalPriceTextBox.TabIndex = 17;
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(138, 108);
+            this.descriptionTextBox.Location = new System.Drawing.Point(15, 108);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(161, 41);
@@ -89,7 +95,7 @@
             // 
             // kmNumberTextBox
             // 
-            this.kmNumberTextBox.Location = new System.Drawing.Point(12, 108);
+            this.kmNumberTextBox.Location = new System.Drawing.Point(666, 44);
             this.kmNumberTextBox.Name = "kmNumberTextBox";
             this.kmNumberTextBox.Size = new System.Drawing.Size(100, 20);
             this.kmNumberTextBox.TabIndex = 15;
@@ -111,7 +117,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 92);
+            this.label3.Location = new System.Drawing.Point(663, 18);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 13);
             this.label3.TabIndex = 23;
@@ -135,53 +141,108 @@
             this.label1.TabIndex = 21;
             this.label1.Text = "AppointmentDate";
             // 
-            // autoComboBox
+            // orderMechanicsListBox
             // 
-            this.autoComboBox.FormattingEnabled = true;
-            this.autoComboBox.Location = new System.Drawing.Point(461, 107);
-            this.autoComboBox.Name = "autoComboBox";
-            this.autoComboBox.Size = new System.Drawing.Size(121, 21);
-            this.autoComboBox.TabIndex = 24;
-            // 
-            // clientComboBox
-            // 
-            this.clientComboBox.FormattingEnabled = true;
-            this.clientComboBox.Location = new System.Drawing.Point(623, 107);
-            this.clientComboBox.Name = "clientComboBox";
-            this.clientComboBox.Size = new System.Drawing.Size(121, 21);
-            this.clientComboBox.TabIndex = 25;
+            this.orderMechanicsListBox.FormattingEnabled = true;
+            this.orderMechanicsListBox.Location = new System.Drawing.Point(240, 108);
+            this.orderMechanicsListBox.Name = "orderMechanicsListBox";
+            this.orderMechanicsListBox.Size = new System.Drawing.Size(120, 95);
+            this.orderMechanicsListBox.TabIndex = 24;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(458, 91);
+            this.label6.Location = new System.Drawing.Point(240, 89);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 13);
-            this.label6.TabIndex = 26;
-            this.label6.Text = "Auto";
+            this.label6.Size = new System.Drawing.Size(59, 13);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Mechanics";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(623, 88);
+            this.label7.Location = new System.Drawing.Point(521, 89);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(33, 13);
+            this.label7.Size = new System.Drawing.Size(58, 13);
             this.label7.TabIndex = 27;
-            this.label7.Text = "Client";
+            this.label7.Text = "Operations";
+            // 
+            // addMechanicButton
+            // 
+            this.addMechanicButton.Location = new System.Drawing.Point(375, 108);
+            this.addMechanicButton.Name = "addMechanicButton";
+            this.addMechanicButton.Size = new System.Drawing.Size(86, 23);
+            this.addMechanicButton.TabIndex = 28;
+            this.addMechanicButton.Text = "Add Mechanic";
+            this.addMechanicButton.UseVisualStyleBackColor = true;
+            this.addMechanicButton.Click += new System.EventHandler(this.addMechanicButton_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(375, 150);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(86, 35);
+            this.button3.TabIndex = 29;
+            this.button3.Text = "Delete Mechanic";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(707, 106);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(100, 23);
+            this.button4.TabIndex = 30;
+            this.button4.Text = "Add Operation";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // orderOperationsCheckedList
+            // 
+            this.orderOperationsCheckedList.FormattingEnabled = true;
+            this.orderOperationsCheckedList.Location = new System.Drawing.Point(524, 217);
+            this.orderOperationsCheckedList.Name = "orderOperationsCheckedList";
+            this.orderOperationsCheckedList.Size = new System.Drawing.Size(177, 94);
+            this.orderOperationsCheckedList.TabIndex = 31;
+            this.orderOperationsCheckedList.Visible = false;
+            // 
+            // orderOperationsListBox
+            // 
+            this.orderOperationsListBox.FormattingEnabled = true;
+            this.orderOperationsListBox.Location = new System.Drawing.Point(524, 105);
+            this.orderOperationsListBox.Name = "orderOperationsListBox";
+            this.orderOperationsListBox.Size = new System.Drawing.Size(177, 95);
+            this.orderOperationsListBox.TabIndex = 32;
+            // 
+            // saveOperationChoice
+            // 
+            this.saveOperationChoice.Location = new System.Drawing.Point(707, 217);
+            this.saveOperationChoice.Name = "saveOperationChoice";
+            this.saveOperationChoice.Size = new System.Drawing.Size(99, 37);
+            this.saveOperationChoice.TabIndex = 33;
+            this.saveOperationChoice.Text = "Save operation choice";
+            this.saveOperationChoice.UseVisualStyleBackColor = true;
+            this.saveOperationChoice.Visible = false;
+            this.saveOperationChoice.Click += new System.EventHandler(this.saveOperationChoice_Click);
             // 
             // OrderDetailsPopup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(867, 420);
+            this.Controls.Add(this.saveOperationChoice);
+            this.Controls.Add(this.orderOperationsListBox);
+            this.Controls.Add(this.orderOperationsCheckedList);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.addMechanicButton);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.clientComboBox);
-            this.Controls.Add(this.autoComboBox);
+            this.Controls.Add(this.orderMechanicsListBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.saveOrderDetailsButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.totalPriceTextBox);
@@ -198,7 +259,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button saveOrderDetailsButton;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox totalPriceTextBox;
@@ -209,9 +270,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox autoComboBox;
-        private System.Windows.Forms.ComboBox clientComboBox;
+        private System.Windows.Forms.ListBox orderMechanicsListBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button addMechanicButton;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.CheckedListBox orderOperationsCheckedList;
+        private System.Windows.Forms.ListBox orderOperationsListBox;
+        private System.Windows.Forms.Button saveOperationChoice;
     }
 }

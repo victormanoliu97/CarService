@@ -19,11 +19,14 @@ namespace CarServiceCore.Utils.Mapper
         public static Automobil FromModelToEntity(AutoModel autoModel)
         {
             Automobil autoEntity = new Automobil();
-            autoEntity.AutoId = autoModel.AutoId;
-            autoEntity.ClientId = autoModel.ClientId;
-            autoEntity.NumarAuto = autoModel.NumarAuto;
-            autoEntity.SasiuId = autoModel.SasiuId;
-            autoEntity.SerieSasiu = autoModel.SerieSasiu;
+            if (autoModel != null)
+            {
+                autoEntity.AutoId = autoModel.AutoId;
+                autoEntity.ClientId = autoModel.ClientId;
+                autoEntity.NumarAuto = autoModel.NumarAuto;
+                autoEntity.SasiuId = autoModel.SasiuId;
+                autoEntity.SerieSasiu = autoModel.SerieSasiu;
+            }
             return autoEntity;
         }
     }

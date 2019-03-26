@@ -230,6 +230,7 @@
             this.modifyOrderButton.Text = "Modify Order";
             this.modifyOrderButton.UseVisualStyleBackColor = true;
             this.modifyOrderButton.Visible = false;
+            this.modifyOrderButton.Click += new System.EventHandler(this.modifyOrderButton_Click);
             // 
             // deleteOrderButton
             // 

@@ -13,6 +13,8 @@ namespace CarServiceCore.Utils.Mapper
             orderModel.ComandaId = entityOrder.ComandaId;
             orderModel.NumarAuto = entityOrder.Automobil.NumarAuto;
             orderModel.StareComanda = entityOrder.StareComanda;
+            orderModel.AppointmentDate = entityOrder.DataProgramare;
+            orderModel.FinalizationDate = entityOrder.DataFinalizare;
             orderModel.DataSystem = entityOrder.DataSystem;
             orderModel.KmBord = entityOrder.KmBord;
             orderModel.Descriere = entityOrder.Descriere;
@@ -28,6 +30,8 @@ namespace CarServiceCore.Utils.Mapper
             orderEntity.ClientId = orderModel.ClientId;
             orderEntity.StareComanda = orderModel.StareComanda;
             orderEntity.DataSystem = orderModel.DataSystem;
+            orderEntity.DataProgramare = orderModel.AppointmentDate;
+            orderEntity.DataFinalizare = orderModel.FinalizationDate;
             orderEntity.KmBord = orderModel.KmBord;
             orderEntity.Descriere = orderModel.Descriere;
             orderEntity.ValoarePiese = orderModel.ValoarePiese;

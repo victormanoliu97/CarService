@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Common.CommandTrees;
-using System.Data.Odbc;
 using System.Linq;
-using System.Net.Sockets;
 using CarServiceCore.Context;
 using CarServiceCore.Model;
 using CarServiceCore.Utils.Transformer;
@@ -171,7 +168,7 @@ namespace CarServiceCore.Repository.OrderRepository
                 AutoId = orderDetails.AutoId,
                 MecanicId = orderDetails.MecanicId,
                 OperatieId = orderDetails.OperatieId,
-                ImagineId = orderDetails.ImagineId
+                ImagineId = orderDetails.ImagineId == null ? 0 : orderDetails.ImagineId
             };
             _applicationContext.DetaliiComandas.Add(orderDetailsToAdd);
             _applicationContext.SaveChanges();
