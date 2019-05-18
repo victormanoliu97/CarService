@@ -4,12 +4,8 @@ using CarServiceCore.Utils.Mapper;
 using CarServiceGUI.Session;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarServiceGUI
@@ -27,36 +23,61 @@ namespace CarServiceGUI
             clonedSessionData = sessionData;
             if(clonedSessionData.Operation_Type == OperationTypes.MODIFY_ORDER_DETAILS)
             {
-                List<Mecanic> orderMechanics = clonedSessionData.orderRepository.GetMechanicsForOrder(clonedSessionData.selectedOrder);
-                List<Operatie> orderOperations = clonedSessionData.orderRepository.GetOperationsForOrder(clonedSessionData.selectedOrder);
-                List<Operatie> allOperations = clonedSessionData.operationsRepository.GetAllOperations();
-                if(orderMechanics != null)
-                {
-                    foreach(var mechanic in orderMechanics)
-                    {
-                        orderMechanicsListBox.Items.Add(mechanic);
-                    }
-                }
-                if(allOperations != null)
-                {
-                    foreach(var operation in allOperations)
-                    {
-                        orderOperationsCheckedList.Items.Add(OperationsMapper.FromEntityToModel(operation));
-                    }
-                }
-                if(orderOperations != null)
-                {
-                    foreach(var operation in orderOperations)
-                    {
-                        orderOperationsListBox.Items.Add(OperationsMapper.FromEntityToModel(operation));
-                    }
-                }
-                appointmentDatePicker.Value = (DateTime)clonedSessionData.selectedOrder.DataProgramare;
-                finalizationDatePicker.Value = (DateTime)clonedSessionData.selectedOrder.DataFinalizare;
-                totalPriceTextBox.Text = clonedSessionData.selectedOrder.ValoarePiese.ToString();
-                kmNumberTextBox.Text = clonedSessionData.selectedOrder.KmBord.ToString();
-                descriptionTextBox.Text = clonedSessionData.selectedOrder.Descriere;
+                PopulateFields();
             }
+            else if(clonedSessionData.Operation_Type == OperationTypes.VIEW_ORDER_DETAILS)
+            {
+                PopulateFields();
+                DisableActionsViewMode();
+            }
+        }
+
+        private void PopulateFields()
+        {
+            List<Mecanic> orderMechanics = clonedSessionData.orderRepository.GetMechanicsForOrder(clonedSessionData.selectedOrder);
+            List<Operatie> orderOperations = clonedSessionData.orderRepository.GetOperationsForOrder(clonedSessionData.selectedOrder);
+            List<Operatie> allOperations = clonedSessionData.operationsRepository.GetAllOperations();
+            if (orderMechanics != null)
+            {
+                foreach (Mecanic mechanic in orderMechanics)
+                {
+                    orderMechanicsListBox.Items.Add(mechanic);
+                }
+            }
+            if (allOperations != null)
+            {
+                foreach (var operation in allOperations)
+                {
+                    orderOperationsCheckedList.Items.Add(OperationsMapper.FromEntityToModel(operation));
+                }
+            }
+            if (orderOperations != null)
+            {
+                foreach (var operation in orderOperations)
+                {
+                    orderOperationsListBox.Items.Add(OperationsMapper.FromEntityToModel(operation));
+                }
+            }
+            appointmentDatePicker.Value = (DateTime)clonedSessionData.selectedOrder.DataProgramare;
+            finalizationDatePicker.Value = (DateTime)clonedSessionData.selectedOrder.DataFinalizare;
+            totalPriceTextBox.Text = clonedSessionData.selectedOrder.ValoarePiese.ToString();
+            kmNumberTextBox.Text = clonedSessionData.selectedOrder.KmBord.ToString();
+            descriptionTextBox.Text = clonedSessionData.selectedOrder.Descriere;
+        }
+
+        private void DisableActionsViewMode()
+        {
+            appointmentDatePicker.Enabled = false;
+            finalizationDatePicker.Enabled = false;
+            totalPriceTextBox.Enabled = false;
+            kmNumberTextBox.Enabled = false;
+            descriptionTextBox.Enabled = false;
+            addMechanicButton.Enabled = false;
+            button4.Enabled = false;
+            button3.Enabled = false;
+            saveOrderDetailsButton.Enabled = false;
+            markOrderFinished.Enabled = false;
+            markOrderImpossible.Enabled = false;
         }
 
         private void addMechanicButton_Click(object sender, EventArgs e)
@@ -96,8 +117,9 @@ namespace CarServiceGUI
 
         private void button3_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(orderMechanicsListBox.SelectedItem.ToString());
+            Type entityType = ObjectContext.GetObjectType(orderMechanicsListBox.SelectedItem.GetType());            
             var selectedMechanic  = MechanicMapper.FromModelToEntity((MechanicModel)orderMechanicsListBox.SelectedItem);
-            MessageBox.Show(selectedMechanic.ToString());
             clonedSessionData.mechanicRepository.DeleteMechanic(selectedMechanic.MecanicId);
             orderMechanicsListBox.Update();
         }
@@ -128,6 +150,18 @@ namespace CarServiceGUI
                     clonedSessionData.orderRepository.AddOrderDetailsForOrder(orderDetails);
                 }
             }
+        }
+
+        private void markOrderFinished_Click(object sender, EventArgs e)
+        {
+            var order = clonedSessionData.selectedOrder;
+            clonedSessionData.orderRepository.SetStatusToOrder(order, OrderStatusEnum.OrderFinished.ElementAt(0).Value);
+        }
+
+        private void markOrderImpossible_Click(object sender, EventArgs e)
+        {
+            var order = clonedSessionData.selectedOrder;
+            clonedSessionData.orderRepository.SetStatusToOrder(order, OrderStatusEnum.OrderDenied.ElementAt(0).Value);
         }
     }
 }

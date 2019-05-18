@@ -7,11 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Runtime.Serialization;
+
 namespace CarServiceCore.Context
 {
     using System;
     using System.Collections.Generic;
-    
+
+    [DataContract(IsReference = true)]
     public partial class Automobil
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,17 +23,33 @@ namespace CarServiceCore.Context
             this.Comandas = new HashSet<Comanda>();
             this.DetaliiComandas = new HashSet<DetaliiComanda>();
         }
-    
+
+        [DataMember]
         public int AutoId { get; set; }
+
+        [DataMember]
         public int ClientId { get; set; }
+
+        [DataMember]
         public string NumarAuto { get; set; }
+
+        [DataMember]
         public int SasiuId { get; set; }
+
+        [DataMember]
         public string SerieSasiu { get; set; }
-    
+
+        [DataMember]
         public virtual Client Client { get; set; }
+
+        [DataMember]
         public virtual Sasiu Sasiu { get; set; }
+
+        [DataMember]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comanda> Comandas { get; set; }
+
+        [DataMember]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetaliiComanda> DetaliiComandas { get; set; }
     }

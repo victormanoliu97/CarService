@@ -7,25 +7,50 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Runtime.Serialization;
+
 namespace CarServiceCore.Context
 {
     using System;
     using System.Collections.Generic;
-    
+
+    [DataContract(IsReference = true)]
     public partial class Comanda
     {
+        [DataMember]
         public int ComandaId { get; set; }
+
+        [DataMember]
         public int AutoId { get; set; }
+
+        [DataMember]
         public int ClientId { get; set; }
+
+        [DataMember]
         public string StareComanda { get; set; }
+
+        [DataMember]
         public System.DateTime DataSystem { get; set; }
+
+        [DataMember]
         public Nullable<System.DateTime> DataProgramare { get; set; }
+
+        [DataMember]
         public Nullable<System.DateTime> DataFinalizare { get; set; }
+
+        [DataMember]
         public int KmBord { get; set; }
+
+        [DataMember]
         public string Descriere { get; set; }
+
+        [DataMember]
         public decimal ValoarePiese { get; set; }
-    
+
+        [DataMember]
         public virtual Automobil Automobil { get; set; }
+
+        [DataMember]
         public virtual Client Client { get; set; }
     }
 }

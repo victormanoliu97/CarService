@@ -99,7 +99,13 @@ namespace CarServiceCore.Repository.ClientRepository
 
         public List<Automobil> GetAutosOfClient(Client client)
         {
-            return client?.Automobils.ToList();
+            if (client != null)
+            {
+                var clientAutos = _applicationContext.Automobils.Where(id => id.ClientId == client.ClientId);
+                return clientAutos.ToList();
+            }
+
+            return null;
         }
     }
 }

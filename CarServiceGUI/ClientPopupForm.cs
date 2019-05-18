@@ -41,6 +41,14 @@ namespace CarServiceGUI
         {
             if (clonnedSessionData.Operation_Type == OperationTypes.ADD_CLIENT)
             {
+                if(string.IsNullOrWhiteSpace(firstNameInput.Text) == true || string.IsNullOrWhiteSpace(lastNameInput.Text) == true 
+                    || string.IsNullOrWhiteSpace(stateInput.Text) == true || string.IsNullOrWhiteSpace(cityInput.Text) == true 
+                    || string.IsNullOrWhiteSpace(adressInput.Text) == true || string.IsNullOrWhiteSpace(phoneInput.Text) == true)
+                {
+                    MessageBox.Show("Not all mandatory fields are filled");
+                    return;
+                }
+
                 Client clientToAdd = new Client
                 {
                     Nume = firstNameInput.Text,
@@ -52,10 +60,17 @@ namespace CarServiceGUI
                     Adresa = adressInput.Text
                 };
                 clonnedSessionData.clientRepository.AddClient(clientToAdd);
-                MessageBox.Show(ClientMapper.fromEntityToModel(clientToAdd).ToString());
             }
             if (clonnedSessionData.Operation_Type == OperationTypes.MODIFY_CLIENT)
             {
+                if (string.IsNullOrWhiteSpace(firstNameInput.Text) == true || string.IsNullOrWhiteSpace(lastNameInput.Text) == true
+                || string.IsNullOrWhiteSpace(stateInput.Text) == true || string.IsNullOrWhiteSpace(cityInput.Text) == true
+                || string.IsNullOrWhiteSpace(adressInput.Text) == true || string.IsNullOrWhiteSpace(phoneInput.Text) == true)
+                {
+                    MessageBox.Show("Not all mandatory fields are filled");
+                    return;
+                }
+
                 var clientToModify = clonnedSessionData.clientRepository.GetClient(clonnedSessionData.selectedClient.ClientId);
                 clientToModify.ClientId = clonnedSessionData.selectedClient.ClientId;
                 clientToModify.Nume = firstNameInput.Text;
@@ -66,7 +81,6 @@ namespace CarServiceGUI
                 clientToModify.Telefon = phoneInput.Text;
                 clientToModify.Adresa = adressInput.Text;
                 clonnedSessionData.clientRepository.UpdateClient(clientToModify);
-                MessageBox.Show(ClientMapper.fromEntityToModel(clientToModify).ToString());
             }
         }
 
@@ -95,5 +109,6 @@ namespace CarServiceGUI
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
         }
+
     }
 }

@@ -47,7 +47,6 @@
             this.addOrderButton = new System.Windows.Forms.Button();
             this.modifyOrderButton = new System.Windows.Forms.Button();
             this.deleteOrderButton = new System.Windows.Forms.Button();
-            this.viewOrderButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // clientFirstNameInput
@@ -227,7 +226,7 @@
             this.modifyOrderButton.Name = "modifyOrderButton";
             this.modifyOrderButton.Size = new System.Drawing.Size(104, 34);
             this.modifyOrderButton.TabIndex = 18;
-            this.modifyOrderButton.Text = "Modify Order";
+            this.modifyOrderButton.Text = "Modify/View Order";
             this.modifyOrderButton.UseVisualStyleBackColor = true;
             this.modifyOrderButton.Visible = false;
             this.modifyOrderButton.Click += new System.EventHandler(this.modifyOrderButton_Click);
@@ -242,22 +241,11 @@
             this.deleteOrderButton.UseVisualStyleBackColor = true;
             this.deleteOrderButton.Visible = false;
             // 
-            // viewOrderButton
-            // 
-            this.viewOrderButton.Location = new System.Drawing.Point(623, 326);
-            this.viewOrderButton.Name = "viewOrderButton";
-            this.viewOrderButton.Size = new System.Drawing.Size(104, 34);
-            this.viewOrderButton.TabIndex = 20;
-            this.viewOrderButton.Text = "View Order";
-            this.viewOrderButton.UseVisualStyleBackColor = true;
-            this.viewOrderButton.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(813, 450);
-            this.Controls.Add(this.viewOrderButton);
             this.Controls.Add(this.deleteOrderButton);
             this.Controls.Add(this.modifyOrderButton);
             this.Controls.Add(this.addOrderButton);
@@ -305,7 +293,6 @@
         private System.Windows.Forms.Button addOrderButton;
         private System.Windows.Forms.Button modifyOrderButton;
         private System.Windows.Forms.Button deleteOrderButton;
-        private System.Windows.Forms.Button viewOrderButton;
     }
 }
 

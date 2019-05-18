@@ -11,5 +11,6 @@ namespace CarServiceCore.Model
         public static IDictionary<string, string> ClientNotPresent = new Dictionary<string, string>(){{"Repogramare Client", "Not_Pres"}};
         public static IDictionary<string, string> OrderRefused = new Dictionary<string, string>() {{"Refuzata la executie", "Refused"}};
         public static IDictionary<string, string> OrderDenied = new Dictionary<string, string>(){{"Detalii nu pot fi indeplinite", "Tech_KO"}};
+        public static IDictionary<string, string> OrderFinished = new Dictionary<string, string>(){{"Comanda terminata", "Finished"}};
     }
 }

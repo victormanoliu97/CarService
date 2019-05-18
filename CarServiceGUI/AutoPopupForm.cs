@@ -1,16 +1,8 @@
 ﻿using CarServiceCore.Context;
 using CarServiceCore.Model;
 using CarServiceCore.Utils.Mapper;
-using CarServiceCore.Utils.Transformer;
 using CarServiceGUI.Session;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarServiceGUI
@@ -67,6 +59,13 @@ namespace CarServiceGUI
             var chassisSelected = (ChassisModel)chassisComboBox.SelectedItem;
             if (clonnedSessionData.Operation_Type == OperationTypes.MODIFY_AUTO)
             {
+                if(string.IsNullOrEmpty(registrationNumberTextBox.Text) || string.IsNullOrEmpty(chassisSeriesTextBox.Text) ||
+                    clientChoosed == null || chassisSelected == null)
+                {
+                    MessageBox.Show("Not all mandatory fields are filled");
+                    return;
+                }
+
                 var autoToModify = clonnedSessionData.selectedAuto;
                 autoToModify.AutoId = clonnedSessionData.selectedAuto.AutoId;
                 autoToModify.NumarAuto = registrationNumberTextBox.Text;
@@ -76,6 +75,13 @@ namespace CarServiceGUI
             }
             if (clonnedSessionData.Operation_Type == OperationTypes.ADD_AUTO)
             {
+                if (string.IsNullOrEmpty(registrationNumberTextBox.Text) || string.IsNullOrEmpty(chassisSeriesTextBox.Text) ||
+                clientChoosed == null || chassisSelected == null)
+                {
+                    MessageBox.Show("Not all mandatory fields are filled");
+                    return;
+                }
+
                 Automobil autoToAdd = new Automobil
                 {
                     NumarAuto = registrationNumberTextBox.Text,

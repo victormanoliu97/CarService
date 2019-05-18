@@ -7,24 +7,47 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Runtime.Serialization;
+
 namespace CarServiceCore.Context
 {
     using System;
     using System.Collections.Generic;
-    
+
+    [DataContract(IsReference = true)]
     public partial class DetaliiComanda
     {
+        [DataMember]
         public int DetaliiComandaId { get; set; }
+
+        [DataMember]
         public int ComandaId { get; set; }
+
+        [DataMember]
         public int AutoId { get; set; }
+
+        [DataMember]
         public int MecanicId { get; set; }
+
+        [DataMember]
         public int OperatieId { get; set; }
+
+        [DataMember]
         public int ImagineId { get; set; }
-    
+
+        [DataMember]
         public virtual Automobil Automobil { get; set; }
+
+        [DataMember]
         public virtual Comanda Comanda { get; set; }
+
+        [DataMember]
         public virtual Imagine Imagine { get; set; }
+
+        [DataMember]
         public virtual Mecanic Mecanic { get; set; }
+
+        [DataMember]
         public virtual Operatie Operatie { get; set; }
     }
 }

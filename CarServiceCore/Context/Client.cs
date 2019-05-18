@@ -11,7 +11,9 @@ namespace CarServiceCore.Context
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
+    [DataContract(IsReference=true)]
     public partial class Client
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,13 +23,28 @@ namespace CarServiceCore.Context
             this.Comandas = new HashSet<Comanda>();
         }
     
+        [DataMember]
         public int ClientId { get; set; }
+
+        [DataMember]
         public string Nume { get; set; }
+
+        [DataMember]
         public string Prenume { get; set; }
+
+        [DataMember]
         public string Adresa { get; set; }
+
+        [DataMember]
         public string Localitate { get; set; }
+
+        [DataMember]
         public string Judet { get; set; }
+
+        [DataMember]
         public string Telefon { get; set; }
+
+        [DataMember]
         public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

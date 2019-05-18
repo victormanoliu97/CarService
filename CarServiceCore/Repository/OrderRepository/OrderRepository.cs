@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using CarServiceCore.Context;
 using CarServiceCore.Model;
@@ -84,7 +85,9 @@ namespace CarServiceCore.Repository.OrderRepository
         {
             if (order == null && status == null) return;
             var foundOrder = _applicationContext.Comandas.FirstOrDefault(o => o.ComandaId == order.ComandaId);
-            if (foundOrder != null) foundOrder.StareComanda = status;
+            if (foundOrder != null) order.StareComanda = status;
+            _applicationContext.Comandas.AddOrUpdate(order);
+            _applicationContext.SaveChanges();
         }
 
         public List<Comanda> GetOrderWithStatus(Comanda order, string status)

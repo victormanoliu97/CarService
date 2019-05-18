@@ -7,11 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Runtime.Serialization;
+
 namespace CarServiceCore.Context
 {
     using System;
     using System.Collections.Generic;
-    
+
+    [DataContract(IsReference = true)]
     public partial class Sasiu
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,9 +22,14 @@ namespace CarServiceCore.Context
         {
             this.Automobils = new HashSet<Automobil>();
         }
-    
+
+        [DataMember]
         public int SasiuId { get; set; }
+
+        [DataMember]
         public string CodSasiu { get; set; }
+
+        [DataMember]
         public string Denumire { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
